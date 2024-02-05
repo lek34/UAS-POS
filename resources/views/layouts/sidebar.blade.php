@@ -12,7 +12,7 @@
         <img src="/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        <a href="#" class="d-block">isi nama</a>
       </div>
     </div>
 
@@ -47,13 +47,13 @@
               </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/suppliers" class="nav-link">
+                <a href="{{route('admin.master.supplier.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Supplier</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('users.index')}}" class="nav-link">
+                <a href="/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User</p>
                 </a>
