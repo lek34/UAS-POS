@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\Master\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->middleware('auth')->group(function(){
+Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function(){
     Route::get('/index', 'index')->name('index');
     Route::get('/create','create')->name('create');
     Route::post('/store','store')->name('store');
