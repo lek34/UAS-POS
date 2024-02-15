@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CustomerController extends Controller
 {
@@ -12,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customers::all();
+        return view('admin.master.customer.index',compact('customers'));
     }
 
     /**
@@ -20,7 +23,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.master.customer.create');
     }
 
     /**
@@ -28,7 +31,10 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customers = $request->validated();
+        Customers::insert($customers);
+        Session::flash('success', 'Data Customer Telah Ditambah.');
+        return redirect()->route('admin.master.customer.index');
     }
 
     /**

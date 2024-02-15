@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin\Master;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Master\Supplier\CreateSupplierRequest;
+use App\Http\Requests\Admin\Master\Supplier\UpdateSupplierRequest;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SupplierController extends Controller
 {
@@ -13,6 +17,8 @@ class SupplierController extends Controller
     public function index()
     {
         //
+        $suppliers = Supplier::all();
+        return view('admin.master.supplier.index',compact('suppliers'));
     }
 
     /**
@@ -21,14 +27,19 @@ class SupplierController extends Controller
     public function create()
     {
         //
+        return view('admin.master.supplier.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateSupplierRequest $request)
     {
         //
+        $supplier = $request->validated();
+        Supplier::insert($supplier);
+        Session::flash('success', 'Data Supplier Telah Ditambah.');
+        return redirect()->route('admin.master.supplier.index');
     }
 
     /**
@@ -37,6 +48,8 @@ class SupplierController extends Controller
     public function show(string $id)
     {
         //
+        $supplier = Supplier::findOrFail($id);
+        return view('admin.master.supplier.show',compact('supplier'));
     }
 
     /**
@@ -45,14 +58,20 @@ class SupplierController extends Controller
     public function edit(string $id)
     {
         //
+        $supplier = Supplier::findOrFail($id);
+        return view('admin.master.supplier.edit',compact('supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateSupplierRequest $request, string $id)
     {
         //
+        $supplier = $request->validated();
+        Supplier::findOrFail($id)->update($supplier);
+        Session::flash('success', 'Data Supplier Telah Diubah.');
+        return redirect()->route('admin.master.supplier.index');
     }
 
     /**
@@ -61,5 +80,8 @@ class SupplierController extends Controller
     public function destroy(string $id)
     {
         //
+        Supplier::findOrFail($id)->delete();
+        Session::flash('success', 'Data Supplier Telah Dihapus.');
+        return redirect()->route('admin.master.supplier.index');
     }
 }
