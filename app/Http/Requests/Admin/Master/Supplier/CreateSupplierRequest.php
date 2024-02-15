@@ -22,7 +22,11 @@ class CreateSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama' => 'required|unique:suppliers,nama|max:100',
+            'alias' => 'required|max:100',
+            'alamat' => 'nullable|max:255',
+            'email' => 'nullable|max:100',
+            'notelp' => 'nullable|max:15',
         ];
     }
 }
