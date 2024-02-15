@@ -11,7 +11,7 @@ class CreateSupplierRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,8 @@ class CreateSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
+
+            //gi
             'nama' => 'required|unique:suppliers,nama|max:100',
             'alias' => 'required|max:100',
             'alamat' => 'nullable|max:255',
