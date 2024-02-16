@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Master;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Master\Customer\CreateCustomerRequest;
+use App\Http\Requests\Admin\Master\Customer\UpdateCustomerRequest;
 use App\Models\Customers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -43,7 +44,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = Customers::findOrFail($id);
+        return view('admin.master.customer.show',compact('customer'));
     }
 
     /**
@@ -51,15 +53,20 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customer = Customers::findOrFail($id);
+        return view('admin.master.customer.edit',compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCustomerRequest $request, string $id)
     {
         //
+        $customer = $request->validated();
+        Customers::findOrFail($id)->update($customer);
+        Session::flash('success', 'Data Customer Telah Diubah.');
+        return redirect()->route('admin.master.customer.index');
     }
 
     /**
@@ -67,6 +74,8 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Customers::findOrFail($id)->delete();
+        Session::flash('success', 'Data Customer Telah Dihapus.');
+        return redirect()->route('admin.master.customer.index');
     }
 }

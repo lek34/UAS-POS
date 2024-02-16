@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Admin\Master\Customer;
+namespace App\Http\Requests\Admin\Master\Armada;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCustomerRequest extends FormRequest
+class UpdateArmadaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class CreateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => 'required|unique:suppliers,nama|max:100',
-            'alias' => 'required|max:100',
-            'alamat' => 'nullable|max:255',
-            'email' => 'nullable|max:100',
-            'notelp' => 'nullable|max:15',
+            //
         ];
     }
 }
