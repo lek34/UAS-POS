@@ -31,9 +31,9 @@
                                 <th>Supplier</th>
                                 <th>Kg</th>
                                 <th>Harga</th>
-                                <th>Total</th>
+                                <th>Sub Total</th>
                                 <th>PPN</th>
-                                <th>Total Harga</th>
+                                <th>Total</th>
                                 <th style="width: 20%">Action</th>
                             </tr>
                         </thead>
@@ -44,23 +44,23 @@
                                 <td>{{$kontrakbeli->tanggal}}</td>
                                 <td>{{$kontrakbeli->no}}</td>
                                 <td>{{$kontrakbeli['supplier']['nama']}}</td>
-                                <td>{{$kontrakbeli->kg}}</td>
-                                <td>{{$kontrakbeli->harga}}</td>
-                                <td>{{$kontrakbeli->harga}}</td>
-                                <td>{{$kontrakbeli->harga}}</td>
-                                <td>{{$kontrakbeli->harga}}</td>
+                                <td>{{number_format($kontrakbeli->kg, 0, '.', ',')}}</td>
+                                <td>{{number_format($kontrakbeli->harga, 0, '.', ',')}}</td>
+                                <td>{{number_format($kontrakbeli->subtotal(), 0, '.', ',')}}</td>
+                                <td>{{number_format($kontrakbeli->ppn(), 0, '.', ',')}}</td>
+                                <td>{{number_format($kontrakbeli->total(), 0, '.', ',')}}</td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{route('admin.master.supplier.show',$supplier->id)}}">
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.transaksi.kontrakbeli.show',$kontrakbeli->id)}}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{route('admin.master.supplier.edit',$supplier->id)}}">
+                                    <a class="btn btn-info btn-sm" href="{{route('admin.transaksi.kontrakbeli.edit',$kontrakbeli->id)}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <form method="post" action="{{route('admin.master.supplier.delete',$supplier->id)}}" accept-charset="UTF-8" style="display:inline">
+                                    <form method="post" action="{{route('admin.transaksi.kontrakbeli.delete',$kontrakbeli->id)}}" accept-charset="UTF-8" style="display:inline">
                                       @csrf
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-danger btn-sm">

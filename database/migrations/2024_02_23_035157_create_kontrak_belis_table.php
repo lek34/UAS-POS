@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('no')->unique();
             $table->foreignId('supplier_id')->constrained();
             $table->decimal('kg',11,2);
-            $table->decimal('harga',4,2);
-            $table->decimal('ppnpercentage',2,2);
+            $table->decimal('harga',6,2);
+            $table->decimal('ppnpercentage',4,2);
             $table->timestamps();
         });
     }

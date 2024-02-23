@@ -24,7 +24,7 @@ class CreateKontrakBeliRequest extends FormRequest
         return [
             //
             'tanggal' => 'required',
-            'no' => 'required|unique:kontrakbelis,no',
+            'no' => 'required|unique:kontrak_belis,no',
             'supplier_id' => 'required',
             'kg' => 'required',
             'harga' => 'required',
