@@ -1,4 +1,4 @@
-![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)### Aplikasi Untuk Transaksi Pembelian dan Penjualan Cangkang Sawit 
+### Aplikasi Untuk Transaksi Pembelian dan Penjualan Cangkang Sawit 
 
 ---
 
@@ -47,13 +47,10 @@
 
 
 ## Design Database
-<<<<<<< HEAD
 ![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
-=======
 ![Uploading ERDDiagram1.png…]("Tampilan Database")
->>>>>>> 8102917 (Update README.md)
+![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
 ## Mockup
-<<<<<<< HEAD
 ![Tampilan Dashboard](tampilandashboard.png "Tampilan Dashboard")
 ![Tampilan Index](tampilanindex.png "Tampilan Index")
 ![Tampilan Form](tampilanform.png "Tampilan Form")
