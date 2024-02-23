@@ -49,6 +49,7 @@
 ## Design Database
 ![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
 ## Mockup
+<<<<<<< HEAD
 ![Tampilan Dashboard](tampilandashboard.png "Tampilan Dashboard")
 ![Tampilan Index](tampilanindex.png "Tampilan Index")
 ![Tampilan Form](tampilanform.png "Tampilan Form")
@@ -57,4 +58,7 @@
 
 
 
-
+=======
+![Tampilan Index](tampilanindex.png "Tampilan Index")
+![Tampilan Form](tampilanform.png "Tampilan Form")
+![Tampilan Generate Laporan](generatelaporan.png "Tampilan Generate Laporan")
