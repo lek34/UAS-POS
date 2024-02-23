@@ -11,7 +11,7 @@ class UpdateArmadaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,11 @@ class UpdateArmadaRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('id');
         return [
-            //
+            'plat' => 'required|unique:armadas,plat,'. $id .'|max:100',
+            'merk' => 'required|max:100',
+            'alias' => 'nullable|max:100',
         ];
     }
 }
