@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Master;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Master\Armada\CreateArmadaRequest;
 use App\Models\Armada;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\Admin\Master\Armada\CreateArmadaRequest;
 
 class ArmadaController extends Controller
 {
@@ -31,7 +32,10 @@ class ArmadaController extends Controller
      */
     public function store(CreateArmadaRequest $request)
     {
-        //
+        $armadas = $request->validated();
+        Armada::insert($armadas);
+        Session::flash('success', 'Data Armada Telah Ditambah.');
+        return redirect()->route('admin.master.armada.index');
     }
 
     /**
@@ -39,7 +43,8 @@ class ArmadaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $armada = Armada::findOrFail($id);
+        return view('admin.master.armada.show',compact('armada'));
     }
 
     /**
@@ -47,15 +52,19 @@ class ArmadaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $armada = Armada::findOrFail($id);
+        return view('admin.master.armada.edit',compact('armada'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateArmadaRequest $request, string $id)
     {
-        //
+        $armada = $request->validated();
+        Armada::findOrFail($id)->update($armada);
+        Session::flash('success', 'Data Armada Telah Diubah.');
+        return redirect()->route('admin.master.armada.index');
     }
 
     /**
@@ -63,6 +72,8 @@ class ArmadaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Armada::findOrFail($id)->delete();
+        Session::flash('success', 'Data Armada Telah Dihapus.');
+        return redirect()->route('admin.master.armada.index');
     }
 }

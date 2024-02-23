@@ -22,7 +22,9 @@ class CreateArmadaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'plat' => 'required|unique:armadas,plat|max:100',
+            'merk' => 'required|max:100',
+            'alias' => 'nullable|max:150',
         ];
     }
 }
