@@ -94,7 +94,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="number" name="subtotal" id="subtotal" class="form-control" step="0.01" readonly>
+                                            <input type="text" name="subtotal" id="subtotal" class="form-control" step="0.01" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="form-group">
                                         <label for="ppnpercentage">PPN Percentage:</label>
                                         <div class="input-group">
-                                            <input type="number" name="ppnpercentage" id="ppnpercentage" class="form-control" step="0.01" placeholder="Masukkan PPH Perentage">
+                                            <input type="number" name="ppnpercentage" id="ppnpercentage" class="form-control" step="0.01" value="{{ old('ppnpercentage') }}" placeholder="Masukkan PPH Perentage">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                             </div>
@@ -148,4 +148,35 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            calculateTotal();
+            function formatNumber(number) {
+                return number.toLocaleString('id-ID');
+            }
+
+            function calculateTotal() {
+                var kg = parseFloat($('#kg').val());
+                var harga = parseFloat($('#harga').val());
+                var ppnpercentage = parseFloat($('#ppnpercentage').val());
+
+                // Calculate subtotal
+                var subtotal = kg * harga;
+                $('#subtotal').val(formatNumber(subtotal));
+
+                // Calculate PPN
+                var ppn = (subtotal * (ppnpercentage / 100));
+                $('#ppn').val(formatNumber(ppn));
+
+                // Calculate total
+                var total = subtotal - ppn;
+                $('#totalharga').val(formatNumber(total));
+            }
+
+            $('#kg, #harga, #ppnpercentage').on('input', function() {
+                calculateTotal();
+            });
+        });
+    </script>
 @endsection

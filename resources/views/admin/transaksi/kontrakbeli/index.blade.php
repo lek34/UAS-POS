@@ -44,11 +44,11 @@
                                 <td>{{$kontrakbeli->tanggal}}</td>
                                 <td>{{$kontrakbeli->no}}</td>
                                 <td>{{$kontrakbeli['supplier']['nama']}}</td>
-                                <td>{{number_format($kontrakbeli->kg, 0, '.', ',')}}</td>
-                                <td>{{number_format($kontrakbeli->harga, 0, '.', ',')}}</td>
-                                <td>{{number_format($kontrakbeli->subtotal(), 0, '.', ',')}}</td>
-                                <td>{{number_format($kontrakbeli->ppn(), 0, '.', ',')}}</td>
-                                <td>{{number_format($kontrakbeli->total(), 0, '.', ',')}}</td>
+                                <td>{{number_format($kontrakbeli->kg, 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakbeli->harga, 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakbeli->subtotal(), 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakbeli->ppn(), 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakbeli->total(), 0, ',', '.')}}</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.transaksi.kontrakbeli.show',$kontrakbeli->id)}}">
                                         <i class="fas fa-folder">

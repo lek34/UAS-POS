@@ -24,7 +24,7 @@ class UpdateKontrakBeliRequest extends FormRequest
         $id  = $this->route('id');
         return [
             'tanggal' => 'required',
-            'no' => 'required|unique:kontrakbelis,no,'.$id,
+            'no' => 'required|unique:kontrak_belis,no,'.$id,
             'supplier_id' => 'required',
             'kg' => 'required',
             'harga' => 'required',
