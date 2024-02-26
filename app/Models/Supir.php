@@ -10,4 +10,6 @@ class Supir extends Model
     use HasFactory;
 
     protected $table = 'supirs';
+
+    protected $fillable = ['nama','no_sim','no_ktp'];
 }
