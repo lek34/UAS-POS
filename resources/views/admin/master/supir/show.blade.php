@@ -1,13 +1,13 @@
 @extends('layouts.app2')
 
-@section('title', 'Armada')
+@section('title', 'supir')
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Armada {{$armada->plat}}</h3>
+                    <h3 class="card-title">Supir {{$supirs->nama}}</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -15,19 +15,19 @@
                         <tbody>
                             <tr>
                                 <th style="width: 20%">ID</th>
-                                <td>{{$armada->id}}</td>
+                                <td>{{$supirs->id}}</td>
                             </tr>
                             <tr>
                                 <th>Plat</th>
-                                <td>{{$armada->plat}}</td>
+                                <td>{{$supirs->nama}}</td>
                             </tr>
                             <tr>
                                 <th>Alias</th>
-                                <td>{{$armada->alias}}</td>
+                                <td>{{$supirs->no_sim}}</td>
                             </tr>
                             <tr>
                                 <th>Merk</th>
-                                <td>{{$armada->merk}}</td>
+                                <td>{{$supirs->no_ktp}}</td>
                             </tr>
                         </tbody>
                     </table>

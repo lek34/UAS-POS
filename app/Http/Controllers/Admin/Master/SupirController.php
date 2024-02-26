@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Master;
 
 use App\Models\Supir;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\Admin\Master\CreateSupirRequest;
-use App\Http\Requests\Admin\Master\UpdateSupirRequest;
+use App\Http\Requests\Admin\Master\Supir\CreateSupirRequest;
+use App\Http\Requests\Admin\Master\Supir\UpdateSupirRequest;
 
 class SupirController extends Controller
 {
@@ -17,7 +17,7 @@ class SupirController extends Controller
     public function index()
     {
         $supirs = Supir::all();
-        return view('admin.master.customer.index',compact('supirs'));
+        return view('admin.master.supir.index',compact('supirs'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SupirController extends Controller
      */
     public function create()
     {
-        return view('admin.master.customer.create');
+        return view('admin.master.supir.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class SupirController extends Controller
     public function show(string $id)
     {
         $supirs = Supir::findOrFail($id);
-        return view('admin.master.supir.show',compact('supir'));
+        return view('admin.master.supir.show',compact('supirs'));
     }
 
     /**
@@ -54,7 +54,7 @@ class SupirController extends Controller
     public function edit(string $id)
     {
         $supirs = Supir::findOrFail($id);
-        return view('admin.master.supir.edit',compact('supir'));
+        return view('admin.master.supir.edit',compact('supirs'));
     }
 
     /**

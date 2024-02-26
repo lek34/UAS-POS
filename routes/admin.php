@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\Master\ArmadaController;
 use App\Http\Controllers\Admin\Master\CustomerController;
 use App\Http\Controllers\Admin\Master\SupplierController;
-use App\Http\Controllers\Admin\SupirController;
+use App\Http\Controllers\Admin\Master\SupirController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
