@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Aplikasi Untuk Transaksi Pembelian dan Penjualan Cangkang Sawit 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+**Anggota:**
+1. Jovin Kendrico
+2. Winar Joko Alexander
+3. Aditya Kristianto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur
+- Master
+> 1. Master Armada
+>>> Master armada adalah fitur untuk melakukan operasi CRUD pada armada
+> 2. Master Customer
+>>> Master Customer adalah fitur untuk melakukan operasi CRUD pada customer
+> 3. Master Supplier
+>>> Master Supplier adalah fitur untuk melakukan operasi CRUD pada supplier
+> 4. Master Supir
+>>> Master Supir adalah fitur untuk melakukan operasi CRUD pada supir
+- Transaksi
+> 1. Kontrak Beli
+>>> Kontrak Beli adalah fitur untuk melakukan operasi CRUD terhadap kontrak beli, dimana fitur ini digunakan sebagai alat untuk membuat transaksi kontrak beli cangkang sawit dari supplier
+> 2. Kontrak Jual
+>>> Kontrak Jual adalah fitur untuk melakukan operasi CRUD terhadap kontrak jual, dimana fitur ini digunakan sebagai alat untuk membuat transaksi kontrak jual cangkang sawit kepada customer
+> 3. Muat Bongkar
+>>> Muat Bongkar adalah fitur untuk melakukan operasi CRUD terhadap muat bongkar, dimana fitur ini digunakan sebagai alat untuk membuat muat bongkar dari kontrak beli dan kontrak jual yang telah ada, dimana fitur ini juga harus mengikutsertakan supir dan armada dari transaksi muat bongkar
+- Laporan
+> 1. Laporan Muat Bongkar
+>>> Laporan Muat Bongkar adalah fitur untuk menyeleksi laporan muat bongkar yang kita inginkan yang dapat difilter berdasarkan supir, nomor kontrak, armada, dan tanggal
+> 2. Laporan Keuntungan
+>>> Laporan Keuntungan adalah fitur untuk  laporan keuntungan dari kontrak jual beli yang telah dilakukan muat bongkar dimana laporan ini dapat difilter berdasarkan tanggal dan nomor kontrak
+> 3. Laporan Gaji Armada Supir
+>>> Laporan Gaji Armada Supir adalah fitur untuk generate laporan dari gaji armada supir yang telah melakukan muat bongkar.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Flow Aplikasi
+1. Buat Data Master Supplier
+2. Buat Data Master Customer
+3. Buat Transaksi Kontrak Beli dengan supplier berdasarkan nominal MT atau harga tertentu
+3. Buat Transaksi Kontrak Jual dengan customer berdasarkan nominal MT atau harga tertentu
+4. Buat Data Master Supir
+5. Buat Data Master Armada
+6. Buat Transaksi Muat Bongkar yang didasarkan oleh kontrak beli dan kontrak jual dimana disini juga ditetapkan berapa ongkos yang diberikan kepada armada dan serta adanya potongan apabila terdapat susut dalam perjalanan
+7. Buat Laporan berdasarkan laporan apa yang kita inginkan
+   
+## Use Case Diagram
+![Use Case Diagram](https://github.com/lek34/UAS-POS/assets/106591780/d5d2e5f5-3447-49a2-bd1f-633299309582)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Design Database
+![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
+## Mockup
+![Tampilan Dashboard](tampilandashboard.png "Tampilan Dashboard")
+![Tampilan Index](tampilanindex.png "Tampilan Index")
+![Tampilan Form](tampilanform.png "Tampilan Form")
+![Tampilan Generate Laporan](generatelaporan.png "Tampilan Generate Laporan")
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
