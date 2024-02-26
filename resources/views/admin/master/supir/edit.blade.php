@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Ubah Customer</h3>
+                        <h3 class="card-title">Ubah Supir</h3>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -20,24 +20,24 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{route('admin.master.armada.update',$armada->id)}}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('admin.master.supir.update',$supirs->id)}}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="plat">Plat:</label>
-                                        <input type="text" name="plat" id="plat" class="form-control" value="{{$armada->plat}}" placeholder="Masukkan Plat">
-                                        @error('plat')
+                                        <label for="plat">Nama:</label>
+                                        <input type="text" name="nama" id="nama" class="form-control" value="{{$supirs->nama}}" placeholder="Masukkan Nama">
+                                        @error('nama')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="alias">Merk:</label>
-                                        <input type="text" name="merk" id="merk" class="form-control" value="{{$armada->merk}}" placeholder="Masukkan Merk">
-                                        @error('merk')
+                                        <label for="alias">No Sim:</label>
+                                        <input type="text" name="no_sim" id="no_sim" class="form-control" value="{{$supirs->no_sim}}" placeholder="Masukkan No Sim">
+                                        @error('no_sim')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -46,9 +46,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="alias">Alias:</label>
-                                        <input type="text" name="alias" id="alias" class="form-control" value="{{$armada->alias}}" placeholder="Masukkan Alias">
-                                        @error('alias')
+                                        <label for="alias">No KTP:</label>
+                                        <input type="text" name="no_ktp" id="no_ktp" class="form-control" value="{{$supirs->no_ktp}}" placeholder="Masukkan No KTP">
+                                        @error('no_ktp')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

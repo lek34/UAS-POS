@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('no_sim');
-            $table->string('nik');
             $table->string('no_ktp');
             $table->timestamps();
         });
