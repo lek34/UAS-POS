@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\Master\ArmadaController;
+use App\Http\Controllers\Admin\Master\CustomerController;
 use App\Http\Controllers\Admin\Master\SupplierController;
+use App\Http\Controllers\Admin\Master\SupirController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,6 +16,36 @@ Route::middleware('auth')->group(function () {
 
 
 Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function(){
+    Route::get('/index', 'index')->name('index');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::get('/edit/{id}','edit')->name('edit');
+    Route::put('/update/{id}','update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+});
+
+Route::controller(CustomerController::class)->prefix('admin/master/customer')->name('admin.master.customer.')->group(function(){
+    Route::get('/index', 'index')->name('index');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::get('/edit/{id}','edit')->name('edit');
+    Route::put('/update/{id}','update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+});
+
+Route::controller(ArmadaController::class)->prefix('admin/master/armada')->name('admin.master.armada.')->group(function(){
+    Route::get('/index', 'index')->name('index');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::get('/edit/{id}','edit')->name('edit');
+    Route::put('/update/{id}','update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+});
+
+Route::controller(SupirController::class)->prefix('admin/master/supir')->name('admin.master.supir.')->group(function(){
     Route::get('/index', 'index')->name('index');
     Route::get('/create','create')->name('create');
     Route::post('/store','store')->name('store');

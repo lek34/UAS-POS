@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Admin\Master\Supplier;
+namespace App\Http\Requests\Admin\Master\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSupplierRequest extends FormRequest
+class CreateCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

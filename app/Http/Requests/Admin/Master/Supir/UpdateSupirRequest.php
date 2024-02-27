@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Admin\Master\Supplier;
+namespace App\Http\Requests\Admin\Master\Supir;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSupplierRequest extends FormRequest
+class UpdateSupirRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,12 +21,11 @@ class CreateSupplierRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('id');
         return [
-            'nama' => 'required|unique:suppliers,nama|max:100',
-            'alias' => 'required|max:100',
-            'alamat' => 'nullable|max:255',
-            'email' => 'nullable|max:100',
-            'notelp' => 'nullable|max:15',
+            'nama' => 'required|unique:supirs,nama,'. $id .'|max:100',
+            'no_sim' => 'required|max:100',
+            'no_ktp' => 'required|max:255',
         ];
     }
 }

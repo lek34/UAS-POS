@@ -33,7 +33,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-copy"></i>
+            <i class="nav-icon fas fa-briefcase"></i>
             <p>
               Master
               <i class="fas fa-angle-left right"></i>
@@ -41,7 +41,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/admin/customers" class="nav-link">
+              <a href="{{route('admin.master.customer.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Customer</p>
               </a>
@@ -50,6 +50,18 @@
                 <a href="{{route('admin.master.supplier.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Supplier</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.master.armada.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Armada</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.master.supir.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Supir</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -62,7 +74,7 @@
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-cash-register"></i>
               <p>
                 Transaksi
                 <i class="fas fa-angle-left right"></i>
