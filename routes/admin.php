@@ -3,11 +3,8 @@
 use App\Http\Controllers\Admin\Master\ArmadaController;
 use App\Http\Controllers\Admin\Master\CustomerController;
 use App\Http\Controllers\Admin\Master\SupplierController;
-<<<<<<< HEAD
 use App\Http\Controllers\Admin\Master\SupirController;
-=======
 use App\Http\Controllers\Admin\Transaksi\KontrakBeliController;
->>>>>>> d6b0f48 (progress crud untuk kontrak beli 80%)
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 

@@ -48,8 +48,6 @@
 
 ## Design Database
 ![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
-![Uploading ERDDiagram1.png…]("Tampilan Database")
-![ERDDiagram1](https://github.com/lek34/UAS-POS/assets/97287300/74171ebe-5e4e-4ea5-ae8c-ad9dde015d7b)
 ## Mockup
 ![Tampilan Dashboard](tampilandashboard.png "Tampilan Dashboard")
 ![Tampilan Index](tampilanindex.png "Tampilan Index")
