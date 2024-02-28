@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Master\ArmadaController;
 use App\Http\Controllers\Admin\Master\CustomerController;
 use App\Http\Controllers\Admin\Master\SupplierController;
 use App\Http\Controllers\Admin\Master\SupirController;
+use App\Http\Controllers\Admin\Transaksi\KontrakBeliController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 
 Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function(){
@@ -55,4 +58,14 @@ Route::controller(SupirController::class)->prefix('admin/master/supir')->name('a
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
+
+Route::controller(KontrakBeliController::class)->prefix('admin/transaksi/kontrakbeli')->name('admin.transaksi.kontrakbeli.')->group(function(){
+    Route::get('/index', 'index')->name('index');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::get('/edit/{id}','edit')->name('edit');
+    Route::put('/update/{id}','update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+});
 

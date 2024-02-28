@@ -54,3 +54,9 @@
 ![Tampilan Form](tampilanform.png "Tampilan Form")
 ![Tampilan Generate Laporan](generatelaporan.png "Tampilan Generate Laporan")
 
+
+
+
+![Tampilan Index](tampilanindex.png "Tampilan Index")
+![Tampilan Form](tampilanform.png "Tampilan Form")
+![Tampilan Generate Laporan](generatelaporan.png "Tampilan Generate Laporan")
