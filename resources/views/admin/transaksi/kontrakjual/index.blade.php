@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Kontrak Beli')
+@section('title', 'Kontrak Jual')
 @section('content')
 @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -15,8 +15,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Data Kontrak Beli</h3>
-                    <a href="{{ route('admin.transaksi.kontrakbeli.create') }}" class="btn btn-success btn-sm float-right" title="Add New Supplier">
+                    <h3 class="card-title">Data Kontrak Jual</h3>
+                    <a href="{{ route('admin.transaksi.kontrakjual.create') }}" class="btn btn-success btn-sm float-right" title="Add New Kontrak">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
                 </div>
@@ -28,7 +28,7 @@
                                 <th>ID</th>
                                 <th>Tanggal</th>
                                 <th>No</th>
-                                <th>Supplier</th>
+                                <th>Customer</th>
                                 <th>Kg</th>
                                 <th>Harga</th>
                                 <th>Sub Total</th>
@@ -38,29 +38,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kontrakbelis as $kontrakbeli)
+                            @foreach ($kontrakjuals as $kontrakjual)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$kontrakbeli->tanggal}}</td>
-                                <td>{{$kontrakbeli->no}}</td>
-                                <td>{{$kontrakbeli->supplier->nama}}</td>
-                                <td>{{number_format($kontrakbeli->kg, 0, ',', '.')}}</td>
-                                <td>{{number_format($kontrakbeli->harga, 0, ',', '.')}}</td>
-                                <td>{{number_format($kontrakbeli->subtotal(), 0, ',', '.')}}</td>
-                                <td>{{number_format($kontrakbeli->ppn(), 0, ',', '.')}}</td>
-                                <td>{{number_format($kontrakbeli->total(), 0, ',', '.')}}</td>
+                                <td>{{$kontrakjual->tanggal}}</td>
+                                <td>{{$kontrakjual->no}}</td>
+                                <td>{{$kontrakjual['customer']['nama']}}</td>
+                                <td>{{number_format($kontrakjual->kg, 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakjual->harga, 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakjual->subtotal(), 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakjual->ppn(), 0, ',', '.')}}</td>
+                                <td>{{number_format($kontrakjual->total(), 0, ',', '.')}}</td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{route('admin.transaksi.kontrakbeli.show',$kontrakbeli->id)}}">
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.transaksi.kontrakjual.show',$kontrakjual->id)}}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{route('admin.transaksi.kontrakbeli.edit',$kontrakbeli->id)}}">
+                                    <a class="btn btn-info btn-sm" href="{{route('admin.transaksi.kontrakjual.edit',$kontrakjual->id)}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <form method="post" action="{{route('admin.transaksi.kontrakbeli.delete',$kontrakbeli->id)}}" accept-charset="UTF-8" style="display:inline">
+                                    <form method="post" action="{{route('admin.transaksi.kontrakjual.delete',$kontrakjual->id)}}" accept-charset="UTF-8" style="display:inline">
                                       @csrf
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-danger btn-sm">
