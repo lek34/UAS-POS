@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@section('title', 'Edit Kontrak Beli')
+@section('title', 'Edit Kontrak Jual')
 
 @section('content')
     <div class="container-fluid">
@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Kontrak Beli</h3>
+                        <h3 class="card-title">Edit Kontrak Jual</h3>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -21,14 +21,14 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('admin.transaksi.kontrakbeli.update', $kontrakbeli->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.transaksi.kontrakjual.update', $kontrakjual->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="tanggal">Tanggal:</label>
-                                        <input type="date" name="tanggal" id="tanggal" value="{{ $kontrakbeli->tanggal }}" class="form-control">
+                                        <input type="date" name="tanggal" id="tanggal" value="{{ $kontrakjual->tanggal }}" class="form-control">
                                         @error('tanggal')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -37,7 +37,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="no">No:</label>
-                                        <input type="text" name="no" id="no" class="form-control" value="{{ $kontrakbeli->no }}" placeholder="Masukkan Nomor Invoice">
+                                        <input type="text" name="no" id="no" class="form-control" value="{{ $kontrakjual->no }}" placeholder="Masukkan Nomor Invoice">
                                         @error('no')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -45,11 +45,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="supplier">Supplier:</label>
-                                        <select class="form-control select2bs4" id="supplier_id" name="supplier_id" style="width: 100%;">
-                                            <option disabled selected value> -- Pilih Supplier -- </option>
-                                            @foreach ($suppliers as $supplier)
-                                                <option value="{{ $supplier->id }}" {{ $supplier->id == $kontrakbeli->supplier_id ? 'selected' : '' }}>{{ $supplier->nama }}</option>
+                                        <label for="supplier">Customer:</label>
+                                        <select class="form-control select2bs4" id="customer_id" name="customer_id" style="width: 100%;">
+                                            <option disabled selected value> -- Pilih Customer -- </option>
+                                            @foreach ($customers as $customer)
+                                                <option value="{{ $customer->id }}" {{ $customer->id == $kontrakjual->customer_id ? 'selected' : '' }}>{{ $customer->nama }}</option>
                                             @endforeach
                                         </select>
                                         @error('supplier_id')
@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label for="kg">Kg:</label>
                                         <div class="input-group">
-                                            <input type="number" name="kg" id="kg" class="form-control" step="0.01" value="{{ $kontrakbeli->kg }}" placeholder="Masukkan Kg">
+                                            <input type="number" name="kg" id="kg" class="form-control" step="0.01" value="{{ $kontrakjual->kg }}" placeholder="Masukkan Kg">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Kg</span>
                                             </div>
@@ -80,7 +80,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="number" name="harga" id="harga" class="form-control" value="{{ $kontrakbeli->harga }}" step="0.01" placeholder="Masukkan Harga">
+                                            <input type="number" name="harga" id="harga" class="form-control" value="{{ $kontrakjual->harga }}" step="0.01" placeholder="Masukkan Harga">
                                         </div>
                                         @error('harga')
                                             <span class="text-danger">{{ $message }}</span>
@@ -96,7 +96,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="subtotal" id="subtotal" class="form-control" step="0.01" value="{{ $kontrakbeli->subtotal() }}" readonly>
+                                            <input type="text" name="subtotal" id="subtotal" class="form-control" step="0.01" value="{{ $kontrakjual->subtotal() }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                     <div class="form-group">
                                         <label for="ppnpercentage">PPN Percentage:</label>
                                         <div class="input-group">
-                                            <input type="number" name="ppnpercentage" id="ppnpercentage" class="form-control" step="0.01" value="{{ $kontrakbeli->ppnpercentage }}" placeholder="Masukkan PPH Perentage">
+                                            <input type="number" name="ppnpercentage" id="ppnpercentage" class="form-control" step="0.01" value="{{ $kontrakjual->ppnpercentage }}" placeholder="Masukkan PPH Perentage">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                             </div>
@@ -121,7 +121,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="ppn" id="ppn" class="form-control" value="{{ $kontrakbeli->ppn() }}" readonly>
+                                            <input type="text" name="ppn" id="ppn" class="form-control" value="{{ $kontrakjual->ppn() }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="totalharga" id="totalharga" class="form-control" value="{{ $kontrakbeli->total() }}" readonly>
+                                            <input type="text" name="totalharga" id="totalharga" class="form-control" value="{{ $kontrakjual->total() }}" readonly>
                                         </div>
                                     </div>
                                 </div>

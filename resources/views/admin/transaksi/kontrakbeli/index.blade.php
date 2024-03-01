@@ -43,7 +43,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$kontrakbeli->tanggal}}</td>
                                 <td>{{$kontrakbeli->no}}</td>
-                                <td>{{$kontrakbeli['supplier']['nama']}}</td>
+                                <td>{{$kontrakbeli->supplier->nama}}</td>
                                 <td>{{number_format($kontrakbeli->kg, 0, ',', '.')}}</td>
                                 <td>{{number_format($kontrakbeli->harga, 0, ',', '.')}}</td>
                                 <td>{{number_format($kontrakbeli->subtotal(), 0, ',', '.')}}</td>
