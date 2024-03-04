@@ -33,4 +33,6 @@ class KontrakBeli extends Model
     {
         return $this->subtotal() - $this->ppn();
     }
+
+
 }
