@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Transaksi\MuatBongkarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Master\SupirController;
@@ -80,3 +81,12 @@ Route::controller(KontrakJualController::class)->prefix('admin/transaksi/kontrak
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
+Route::controller(MuatBongkarController::class)->prefix('admin/transaksi/muatbongkar')->name('admin.transaksi.muatbongkar.')->group(function(){
+    Route::get('/index', 'index')->name('index');
+    Route::get('/create','create')->name('create');
+    Route::post('/store','store')->name('store');
+    Route::get('/show/{id}','show')->name('show');
+    Route::get('/edit/{id}','edit')->name('edit');
+    Route::put('/update/{id}','update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('delete');
+});
