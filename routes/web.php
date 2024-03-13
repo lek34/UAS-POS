@@ -18,12 +18,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/admin', function () {
-    return view('dashboard');
-})->middleware('auth');
+require __DIR__ . '/admin.php';
 
 
-require __DIR__.'/admin.php';
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
