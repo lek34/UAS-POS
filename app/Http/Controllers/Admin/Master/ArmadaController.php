@@ -6,6 +6,8 @@ use App\Models\Armada;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+
 use App\Http\Requests\Admin\Master\Armada\CreateArmadaRequest;
 
 class ArmadaController extends Controller
@@ -16,7 +18,11 @@ class ArmadaController extends Controller
     public function index()
     {
         $armadas = Armada::all();
+        $title = 'Delete Armada!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         return view('admin.master.armada.index',compact('armadas'));
+
     }
 
     /**
@@ -34,7 +40,9 @@ class ArmadaController extends Controller
     {
         $armadas = $request->validated();
         Armada::insert($armadas);
-        Session::flash('success', 'Data Armada Telah Ditambah.');
+        // Session::flash('success', 'Data Armada Telah Ditambah.');
+        // Alert::success('Success', 'Data Armada Telah Ditambah.');
+        toastr()->success('Data Armada Telah Ditambah.');
         return redirect()->route('admin.master.armada.index');
     }
 
@@ -63,7 +71,8 @@ class ArmadaController extends Controller
     {
         $armada = $request->validated();
         Armada::findOrFail($id)->update($armada);
-        Session::flash('success', 'Data Armada Telah Diubah.');
+        // Session::flash('success', 'Data Armada Telah Diubah.');
+        toastr()->success('Data Armada Telah Diubah.');
         return redirect()->route('admin.master.armada.index');
     }
 
@@ -73,7 +82,8 @@ class ArmadaController extends Controller
     public function destroy(string $id)
     {
         Armada::findOrFail($id)->delete();
-        Session::flash('success', 'Data Armada Telah Dihapus.');
+        // Session::flash('success', 'Data Armada Telah Dihapus.');
+        toastr()->success('Data telah berhasil di hapus!');
         return redirect()->route('admin.master.armada.index');
     }
 }
