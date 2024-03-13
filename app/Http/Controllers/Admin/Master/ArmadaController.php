@@ -42,7 +42,7 @@ class ArmadaController extends Controller
         Armada::insert($armadas);
         // Session::flash('success', 'Data Armada Telah Ditambah.');
         // Alert::success('Success', 'Data Armada Telah Ditambah.');
-        toastr()->success('Data has been saved successfully!');
+        toastr()->success('Data Armada Telah Ditambah.');
         return redirect()->route('admin.master.armada.index');
     }
 
@@ -71,7 +71,8 @@ class ArmadaController extends Controller
     {
         $armada = $request->validated();
         Armada::findOrFail($id)->update($armada);
-        Session::flash('success', 'Data Armada Telah Diubah.');
+        // Session::flash('success', 'Data Armada Telah Diubah.');
+        toastr()->success('Data Armada Telah Diubah.');
         return redirect()->route('admin.master.armada.index');
     }
 
