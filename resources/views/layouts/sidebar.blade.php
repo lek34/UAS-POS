@@ -1,8 +1,13 @@
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link">
+
+    <img src="/palm-oil.png" alt="AdminLTE Logo" class="brand-image " style="opacity: ">
+    <span class="brand-text font-weight-bold">Putra Makmur</span>
+
       <img src="/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
           style="opacity: .8">
       <span class="brand-text font-weight-light">Putra Makmur</span>
+
   </a>
 
   <!-- Sidebar -->

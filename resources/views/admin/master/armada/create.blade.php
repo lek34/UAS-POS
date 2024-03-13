@@ -10,7 +10,7 @@
                         <h3 class="card-title">Tambah Armada</h3>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
+                        {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -18,7 +18,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif --}}
 
                         <form method="POST" action="{{route('admin.master.armada.store')}}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             @csrf

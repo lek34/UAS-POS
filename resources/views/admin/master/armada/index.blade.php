@@ -2,14 +2,14 @@
 
 @section('title', 'Armada')
 @section('content')
-@if(Session::has('success'))
+{{-- @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-@endif
+@endif --}}
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -36,9 +36,9 @@
                             @foreach ($armadas as $armada)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$customer->plat}}</td>
-                                <td>{{$customer->alias}}</td>
-                                <td>{{$customer->merk}}</td>
+                                <td>{{$armada->plat}}</td>
+                                <td>{{$armada->alias}}</td>
+                                <td>{{$armada->merk}}</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.master.armada.show',$armada->id)}}">
                                         <i class="fas fa-folder">
@@ -53,7 +53,7 @@
                                     <form method="post" action="{{route('admin.master.armada.delete',$armada->id)}}" accept-charset="UTF-8" style="display:inline">
                                       @csrf
                                       @method('DELETE')
-                                      <button type="submit" class="btn btn-danger btn-sm">
+                                      <button data-confirm-delete="true" type="submit" class="btn btn-danger btn-sm">
                                           <i class="fas fa-trash"></i>Delete
                                       </button>
                                   </form>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('plat');
             $table->string('alias');
-            $table->string('jenis');
+            $table->string('merk');
             $table->timestamps();
         });
     }
