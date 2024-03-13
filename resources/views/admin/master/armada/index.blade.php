@@ -36,9 +36,9 @@
                             @foreach ($armadas as $armada)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$customer->plat}}</td>
-                                <td>{{$customer->alias}}</td>
-                                <td>{{$customer->merk}}</td>
+                                <td>{{$armada->plat}}</td>
+                                <td>{{$armada->alias}}</td>
+                                <td>{{$armada->merk}}</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.master.armada.show',$armada->id)}}">
                                         <i class="fas fa-folder">
