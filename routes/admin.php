@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Transaksi\MuatBongkarController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -17,76 +18,76 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/admin', [DashboardController::class, 'index'])->middleware('auth')->name('admin.dashboard');
 
 
-
-Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function(){
+Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
-Route::controller(CustomerController::class)->prefix('admin/master/customer')->name('admin.master.customer.')->group(function(){
+Route::controller(CustomerController::class)->prefix('admin/master/customer')->name('admin.master.customer.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
-Route::controller(ArmadaController::class)->prefix('admin/master/armada')->name('admin.master.armada.')->group(function(){
+Route::controller(ArmadaController::class)->prefix('admin/master/armada')->name('admin.master.armada.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
-Route::controller(SupirController::class)->prefix('admin/master/supir')->name('admin.master.supir.')->group(function(){
+Route::controller(SupirController::class)->prefix('admin/master/supir')->name('admin.master.supir.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
 
-Route::controller(KontrakBeliController::class)->prefix('admin/transaksi/kontrakbeli')->name('admin.transaksi.kontrakbeli.')->group(function(){
+Route::controller(KontrakBeliController::class)->prefix('admin/transaksi/kontrakbeli')->name('admin.transaksi.kontrakbeli.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
-Route::controller(KontrakJualController::class)->prefix('admin/transaksi/kontrakjual')->name('admin.transaksi.kontrakjual.')->group(function(){
+Route::controller(KontrakJualController::class)->prefix('admin/transaksi/kontrakjual')->name('admin.transaksi.kontrakjual.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
 
-Route::controller(MuatBongkarController::class)->prefix('admin/transaksi/muatbongkar')->name('admin.transaksi.muatbongkar.')->group(function(){
+Route::controller(MuatBongkarController::class)->prefix('admin/transaksi/muatbongkar')->name('admin.transaksi.muatbongkar.')->group(function () {
     Route::get('/index', 'index')->name('index');
-    Route::get('/create','create')->name('create');
-    Route::post('/store','store')->name('store');
-    Route::get('/show/{id}','show')->name('show');
-    Route::get('/edit/{id}','edit')->name('edit');
-    Route::put('/update/{id}','update')->name('update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/delete/{id}', 'destroy')->name('delete');
 });
