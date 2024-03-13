@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Transaksi;
 
 use App\Http\Controllers\Controller;
+use App\Models\MuatBongkar;
 use Illuminate\Http\Request;
 
 class MuatBongkarController extends Controller
@@ -13,6 +14,8 @@ class MuatBongkarController extends Controller
     public function index()
     {
         //
+        $muatbongkars = MuatBongkar::all();
+        return view('admin.transaksi.muatbongkar.index', compact('muatbongkars'));
 
     }
 
@@ -22,6 +25,7 @@ class MuatBongkarController extends Controller
     public function create()
     {
         //
+        return view('admin.transaksi.muatbongkar.create');
     }
 
     /**
@@ -30,6 +34,8 @@ class MuatBongkarController extends Controller
     public function store(Request $request)
     {
         //
+
+        return redirect()->route('admin.transaksi.muatbongkar.index');
     }
 
     /**
@@ -38,6 +44,8 @@ class MuatBongkarController extends Controller
     public function show(string $id)
     {
         //
+        $muatbongkar = MuatBongkar::findOrFail($id);
+        return view('admin.transaksi.muatbongkar.show', compact('muatbongkar'));
     }
 
     /**
@@ -46,6 +54,7 @@ class MuatBongkarController extends Controller
     public function edit(string $id)
     {
         //
+        return view('admin.transaksi.muatbongkar.edit');
     }
 
     /**
@@ -54,6 +63,7 @@ class MuatBongkarController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        return redirect()->route('admin.transaksi.muatbongkar.index');
     }
 
     /**
@@ -62,5 +72,6 @@ class MuatBongkarController extends Controller
     public function destroy(string $id)
     {
         //
+        return redirect()->route('admin.transaksi.muatbongkar.index');
     }
 }
