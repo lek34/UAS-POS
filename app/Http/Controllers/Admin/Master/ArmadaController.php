@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Http\Requests\Admin\Master\Armada\CreateArmadaRequest;
+use App\Http\Requests\Admin\Master\Armada\UpdateArmadaRequest;
 
 class ArmadaController extends Controller
 {
@@ -18,9 +19,6 @@ class ArmadaController extends Controller
     public function index()
     {
         $armadas = Armada::all();
-        $title = 'Delete Armada!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
         return view('admin.master.armada.index',compact('armadas'));
 
     }
@@ -67,7 +65,7 @@ class ArmadaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateArmadaRequest $request, string $id)
+    public function update(UpdateArmadaRequest $request, string $id)
     {
         $armada = $request->validated();
         Armada::findOrFail($id)->update($armada);

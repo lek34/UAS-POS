@@ -2,13 +2,13 @@
 
 @section('title', 'Armada')
 @section('content')
-{{-- @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+{{-- @if (Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 @endif --}}
 <div class="container-fluid">
     <div class="row">
@@ -16,7 +16,8 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Data Armada</h3>
-                    <a href="{{ route('admin.master.armada.create') }}" class="btn btn-success btn-sm float-right" title="Add New Armada">
+                    <a href="{{ route('admin.master.armada.create') }}" class="btn btn-success btn-sm float-right"
+                        title="Add New Armada">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
                 </div>
@@ -35,33 +36,34 @@
                         <tbody>
                             @foreach ($armadas as $armada)
                             <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$armada->plat}}</td>
-                                <td>{{$armada->alias}}</td>
-                                <td>{{$armada->merk}}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $armada->plat }}</td>
+                                <td>{{ $armada->alias }}</td>
+                                <td>{{ $armada->merk }}</td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{route('admin.master.armada.show',$armada->id)}}">
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.master.armada.show', $armada->id) }}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{route('admin.master.armada.edit',$armada->id)}}">
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('admin.master.armada.edit', $armada->id) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <form method="post" action="{{route('admin.master.armada.delete',$armada->id)}}" accept-charset="UTF-8" style="display:inline">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button data-confirm-delete="true" type="submit" class="btn btn-danger btn-sm">
-                                          <i class="fas fa-trash"></i>Delete
-                                      </button>
-                                  </form>
+                                    <button type="button" data-toggle="modal" data-target="#delete{{ $armada->id }}"
+                                        class="btn btn-danger btn-sm delete">
+                                        <i class="fas fa-trash"></i>Delete
+                                    </button>
                                 </td>
                             </tr>
+                            <x-confirm-delete :id="$armada->id" :route="route('admin.master.armada.delete', $armada->id)" :model="$armada" :modelAttribute="'plat'" />
                             @endforeach
                         </tbody>
                     </table>
+                    <!-- Modal HTML -->
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -71,5 +73,6 @@
     </div>
     <!-- /.row -->
 </div>
+
 
 @endsection
