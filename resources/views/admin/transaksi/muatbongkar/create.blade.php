@@ -1,5 +1,5 @@
 @extends('layouts.app2')
-@section('title', 'Kontrak Jual')
+@section('title', 'Muat Bongkar')
 
 @section('content')
     <div class="container-fluid">
@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Kontrak Jual</h3>
+                        <h3 class="card-title">Tambah Muat Bongkar</h3>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -20,25 +20,15 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('admin.transaksi.kontrakjual.store') }}" accept-charset="UTF-8"
+                        <form method="POST" action="{{ route('admin.transaksi.muatbongkar.store') }}" accept-charset="UTF-8"
                             class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="tanggal">Tanggal:</label>
-                                        <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}"
-                                            class="form-control">
-                                        @error('tanggal')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="no">No:</label>
+                                        <label for="no">No Pengiriman:</label>
                                         <input type="text" name="no" id="no" class="form-control"
-                                            value="{{ old('no') }}" placeholder="Masukkan Nomor Invoice">
+                                            value="{{ old('no') }}" placeholder="Masukkan Nomor Pengiriman">
                                         @error('no')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -46,103 +36,142 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="supplier">Customer:</label>
-                                        <select class="form-control select2bs4" id="supplier_id" name="supplier_id"
+                                        <label for="supplier">Armada:</label>
+                                        <select class="form-control select2bs4" id="armada_id" name="armada_id"
                                             style="width: 100%;">
-                                            <option disabled selected value> -- Pilih Customer -- </option>
-                                            @foreach ($customers as $cust)
-                                                <option value="{{ $cust->id }}">{{ $cust->nama }}</option>
+                                            <option disabled selected value> -- Pilih Armada -- </option>
+                                            @foreach ($armadas as $armada)
+                                                <option value="{{ $armada->id }}">{{ $armada->plat }} -
+                                                    {{ $armada->alias }}</option>
                                             @endforeach
                                         </select>
-                                        @error('customer_id')
+                                        @error('armada_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="supplier">Supir:</label>
+                                        <select class="form-control select2bs4" id="supir_id" name="supir_id"
+                                            style="width: 100%;">
+                                            <option disabled selected value> -- Pilih Supir -- </option>
+                                            @foreach ($supirs as $supir)
+                                                <option value="{{ $supir->id }}">{{ $supir->nama }} -
+                                                    {{ $supir->no_ktp }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('supir_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <h3>Tambah Muat</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="kg">Kg:</label>
-                                        <div class="input-group">
-                                            <input type="number" name="kg" id="kg" class="form-control"
-                                                step="0.01" value="{{ old('kg') }}" placeholder="Masukkan Kg">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">Kg</span>
-                                            </div>
-                                        </div>
-                                        @error('kg')
+                                        <label for="tanggal_muat">Tanggal Muat:</label>
+                                        <input type="date" name="tanggal_muat" id="tanggal_muat"
+                                            value="{{ old('tanggal_muat') }}" class="form-control">
+                                        @error('tanggal')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="harga">Harga:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Rp</span>
-                                            </div>
-                                            <input type="number" name="harga" id="harga" class="form-control"
-                                                value="{{ old('harga') }}" step="0.01" placeholder="Masukkan Harga">
-                                        </div>
-                                        @error('harga')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <label for="kontrak_beli_id">Kontrak Beli:</label>
+                                        <select class="form-control select2bs4" id="kontrak_beli_id" name="kontrak_beli_id"
+                                            style="width: 100%;">
+                                            <option disabled selected value> -- Pilih Kontrak Beli -- </option>
+                                            @foreach ($kontrakjuals as $kontrakjual)
+                                                <option value="{{ $kontrakjual->id }}">{{ $kontrakjual->no }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="brutomuat">Bruto:</label>
+                                        <input type="number" name="brutomuat" id="brutomuat" class="form-control"
+                                            placeholder="Masukkan Bruto">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tarramuat">Tarra:</label>
+                                        <input type="number" name="tarramuat" id="tarramuat" class="form-control"
+                                            placeholder="Masukkan Tarra">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="nettomuat">Netto:</label>
+                                        <input type="number" name="nettomuat" id="nettomuat" class="form-control"
+                                            placeholder="Masukkan Netto">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
+                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <h3>Tambah Bongkar</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="subtotal">Sub Total:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Rp</span>
-                                            </div>
-                                            <input type="text" name="subtotal" id="subtotal" class="form-control"
-                                                step="0.01" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="ppnpercentage">PPN Percentage:</label>
-                                        <div class="input-group">
-                                            <input type="number" name="ppnpercentage" id="ppnpercentage"
-                                                class="form-control" step="0.01" value="{{ old('ppnpercentage') }}"
-                                                placeholder="Masukkan PPH Perentage">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">%</span>
-                                            </div>
-                                        </div>
-                                        @error('ppnpercentage')
+                                        <label for="tanggal_bongkar">Tanggal Bongkar:</label>
+                                        <input type="date" name="tanggal_bongkar" id="tanggal_bongkar"
+                                            value="{{ old('tanggal_bongkar') }}" class="form-control">
+                                        @error('tanggal')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="ppn">PPN:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Rp</span>
-                                            </div>
-                                            <input type="text" name="ppn" id="ppn" class="form-control"
-                                                readonly>
-                                        </div>
+                                        <label for="kontrak_jual_id">Kontrak Jual:</label>
+                                        <select class="form-control select2bs4" id="kontrak_jual_id"
+                                            name="kontrak_jual_id" style="width: 100%;">
+                                            <option disabled selected value> -- Pilih Kontrak Jual -- </option>
+                                            @foreach ($kontrakjuals as $kontrakjual)
+                                                <option value="{{ $kontrakjual->id }}">{{ $kontrakjual->no }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="totalharga">Total Harga:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Rp</span>
-                                            </div>
-                                            <input type="text" name="totalharga" id="totalharga" class="form-control"
-                                                readonly>
-                                        </div>
+                                        <label for="brutobongkar">Bruto:</label>
+                                        <input type="number" name="brutobongkar" id="brutobongkar" class="form-control"
+                                            placeholder="Masukkan Bruto">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="tarrabongkar">Tarra:</label>
+                                        <input type="number" name="tarrabongkar" id="tarrabongkar" class="form-control"
+                                            placeholder="Masukkan Tarra">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="nettobongkar">Netto:</label>
+                                        <input type="number" name="nettobongkar" id="nettobongkar" class="form-control"
+                                            placeholder="Masukkan Netto">
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
+                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
                                     </div>
                                 </div>
                             </div>

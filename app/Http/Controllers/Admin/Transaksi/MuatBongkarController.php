@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin\Transaksi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Transaksi\MuatBongkar\CreateMuatBongkarRequest;
+use App\Http\Requests\Admin\Transaksi\MuatBongkar\UpdateMuatBongkarRequest;
+use App\Models\Armada;
+use App\Models\KontrakBeli;
+use App\Models\KontrakJual;
 use App\Models\MuatBongkar;
+use App\Models\Supir;
 use Illuminate\Http\Request;
 
 class MuatBongkarController extends Controller
@@ -25,13 +31,17 @@ class MuatBongkarController extends Controller
     public function create()
     {
         //
-        return view('admin.transaksi.muatbongkar.create');
+        $armadas = Armada::all();
+        $supirs = Supir::all();
+        $kontrakbelis = KontrakBeli::all();
+        $kontrakjuals = KontrakJual::all();
+        return view('admin.transaksi.muatbongkar.create',compact('armadas','supirs','kontrakbelis','kontrakjuals'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateMuatBongkarRequest $request)
     {
         //
 
@@ -60,7 +70,7 @@ class MuatBongkarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMuatBongkarRequest $request, string $id)
     {
         //
         return redirect()->route('admin.transaksi.muatbongkar.index');
