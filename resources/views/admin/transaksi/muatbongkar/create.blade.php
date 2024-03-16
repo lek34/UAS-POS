@@ -117,8 +117,30 @@
                                 <div class="col-md-1">
                                     <div class="form-group">
                                         {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
-                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i
+                                                class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Table to display added items -->
+                                    <table class="table" id="muatItem">
+                                        <thead>
+                                            <tr>
+                                                <th style="display: none;">id</th>
+                                                <th>Tanggal</th>
+                                                <th>Kontrak Beli</th>
+                                                <th>Bruto</th>
+                                                <th>Tarra</th>
+                                                <th>Netto</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Added items will appear here dynamically -->
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="row">
@@ -171,22 +193,189 @@
                                 <div class="col-md-1">
                                     <div class="form-group">
                                         {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
-                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+                                        <button style="margin-top: 32px" class="btn btn-success" type="submit"><i
+                                                class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group float-right">
-                                        <input class="btn btn-primary" type="submit" value="Tambah">
+                                    <!-- Table to display added items -->
+                                    <table class="table" id="bongkarItem">
+                                        <thead>
+                                            <tr>
+                                                <th style="display: none;">id</th>
+                                                <th>Tanggal</th>
+                                                <th>Kontrak Jual</th>
+                                                <th>Bruto</th>
+                                                <th>Tarra</th>
+                                                <th>Netto</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Added items will appear here dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Total Muat :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="muat"
+                                                            name="muat" value="0.00" readonly>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Kg</span>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Bongkar :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="bongkar"
+                                                            name="bongkar" value="0.00" readonly>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Kg</span>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Susut :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="susut"
+                                                            name="susut" value="0.00" readonly>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Kg</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Potongan Susut :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="potsusut"
+                                                            name="potsusut" value="0.00">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ongkos :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="ongkos"
+                                                            name="ongkos" value="0.00">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Ongkos :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" id="total_ongkos"
+                                                        name="total_ongkos" value="0.00" readonly>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Total Potongan Susut :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" name="total_ongkos" id="total_ongkos"
+                                                            class="form-control" value="0.00" readonly>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Harga :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" name="total_harga" id="total_harga"
+                                                            class="form-control" value="0.00" readonly>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>PPH :</th>
+                                                <td>
+                                                    <input type="text" class="form-control" id="pph"
+                                                        name="pph" value="Rp 0.00" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total PPH :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" name="total_pph" id="total_pph"
+                                                            class="form-control" value="0.00" readonly>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Dibayar :</th>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">Rp</span>
+                                                        </div>
+                                                        <input type="text" name="total_dibayar" id="total_dibayar"
+                                                            class="form-control" value="0.00" readonly>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group float-right">
+                            <input class="btn btn-primary" type="submit" value="Tambah">
+                        </div>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
