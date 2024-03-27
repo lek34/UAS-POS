@@ -39,7 +39,8 @@ class KontrakBeliController extends Controller
         //
         $kontrakbeli = $request->validated();
         KontrakBeli::insert($kontrakbeli);
-        Session::flash('success', 'Data Kontrak Beli Telah Ditambah.');
+        // Session::flash('success', 'Data Kontrak Beli Telah Ditambah.');
+        toastr()->success('Data Kontrak Beli Telah Ditambah.');
         return redirect()->route('admin.transaksi.kontrakbeli.index');
     }
 
@@ -72,7 +73,8 @@ class KontrakBeliController extends Controller
         //
         $kontrakbeli = $request->validated();
         KontrakBeli::findOrFail($id)->update($kontrakbeli);
-        Session::flash('success', 'Data Kontrak Beli Telah Diubah.');
+        // Session::flash('success', 'Data Kontrak Beli Telah Diubah.');
+        toastr()->success('Data Kontrak Beli Telah Diubah.');
         return redirect()->route('admin.transaksi.kontrakbeli.index');
     }
 
@@ -83,7 +85,8 @@ class KontrakBeliController extends Controller
     {
         //
         KontrakBeli::findOrFail($id)->delete();
-        Session::flash('success', 'Data Kontrak Beli Telah Dihapus.');
+        // Session::flash('success', 'Data Kontrak Beli Telah Dihapus.');
+        toastr()->success('Data Kontrak Beli Telah Dihapus.');
         return redirect()->route('admin.transaksi.kontrakbeli.index');
     }
 }

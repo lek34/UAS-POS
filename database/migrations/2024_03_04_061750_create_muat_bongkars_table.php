@@ -22,7 +22,6 @@ return new class extends Migration
             $table->bigInteger('potsusut');
             $table->bigInteger('ongkos');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

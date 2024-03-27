@@ -38,7 +38,8 @@ class KontrakJualController extends Controller
     {
         $kontrakjual = $request->validated();
         KontrakJual::insert($kontrakjual);
-        Session::flash('success', 'Data Kontrak Jual Telah Ditambah.');
+        // Session::flash('success', 'Data Kontrak Jual Telah Ditambah.');
+        toastr()->success('Data Kontrak Jual Telah Ditambah.');
         return redirect()->route('admin.transaksi.kontrakjual.index');
     }
 
@@ -69,7 +70,8 @@ class KontrakJualController extends Controller
     {
         $kontrakjual = $request->validated();
         KontrakJual::findOrFail($id)->update($kontrakjual);
-        Session::flash('success', 'Data Kontrak Jual Telah Ditambah.');
+        // Session::flash('success', 'Data Kontrak Jual Telah Ditambah.');
+        toastr()->success('Data Kontrak Jual Telah Ditambah.');
         return redirect()->route('admin.transaksi.kontrakjual.index');
     }
 
@@ -79,7 +81,8 @@ class KontrakJualController extends Controller
     public function destroy(string $id)
     {
         KontrakJual::findOrFail($id)->delete();
-        Session::flash('success', 'Data Kontrak Jual Telah Dihapus.');
+        // Session::flash('success', 'Data Kontrak Jual Telah Dihapus.');
+        toastr()->success('Data Kontrak Jual Telah Dihapus.');
         return redirect()->route('admin.transaksi.kontrakjual.index');
     }
 }
