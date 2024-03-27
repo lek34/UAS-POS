@@ -35,7 +35,8 @@ class SupirController extends Controller
     {
         $supirs = $request->validated();
         Supir::insert($supirs);
-        Session::flash('success', 'Data supir Telah Ditambah.');
+        // Session::flash('success', 'Data supir Telah Ditambah.');
+        toastr()->success('Data Supir Telah Ditambah.');
         return redirect()->route('admin.master.supir.index');
     }
 
@@ -65,7 +66,8 @@ class SupirController extends Controller
         //
         $supirs = $request->validated();
         Supir::findOrFail($id)->update($supirs);
-        Session::flash('success', 'Data Supir Telah Diubah.');
+        // Session::flash('success', 'Data Supir Telah Diubah.');
+        toastr()->success('Data Supir Telah Diubah.');
         return redirect()->route('admin.master.supir.index');
     }
 
@@ -75,7 +77,8 @@ class SupirController extends Controller
     public function destroy(string $id)
     {
         Supir::findOrFail($id)->delete();
-        Session::flash('success', 'Data Supir Telah Dihapus.');
+        // Session::flash('success', 'Data Supir Telah Dihapus.');
+        toastr()->success('Data Supir Telah Dihapus.');
         return redirect()->route('admin.master.supir.index');
     }
 }
