@@ -60,6 +60,7 @@
                                         </i>
                                         Edit
                                     </a>
+<<<<<<< Updated upstream
                                     <form method="post" action="{{route('admin.transaksi.kontrakbeli.delete',$kontrakbeli->id)}}" accept-charset="UTF-8" style="display:inline">
                                       @csrf
                                       @method('DELETE')
@@ -69,6 +70,14 @@
                                   </form>
                                 </td>
                             </tr>
+=======
+                                    <button type="button" data-toggle="modal" data-target="#delete{{ $kontrakbeli->id }}" class="btn btn-danger btn-sm delete">
+                                        <i class="fas fa-trash"></i>Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            <x-confirm-delete :id="$kontrakbeli->id" :route="route('admin.transaksi.kontrakbeli.delete', $kontrakbeli->id)" :model="$kontrakbeli" :modelAttribute="'no'" />
+>>>>>>> Stashed changes
                             @endforeach
                         </tbody>
                     </table>
