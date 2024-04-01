@@ -60,13 +60,6 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <!-- <form method="post" action="{{route('admin.transaksi.kontrakbeli.delete',$kontrakbeli->id)}}" accept-charset="UTF-8" style="display:inline">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-danger btn-sm">
-                                          <i class="fas fa-trash"></i>Delete
-                                      </button>
-                                  </form> -->
                                     <button type="button" data-toggle="modal" data-target="#delete{{ $kontrakbeli->id }}" class="btn btn-danger btn-sm delete">
                                         <i class="fas fa-trash"></i>Delete
                                     </button>

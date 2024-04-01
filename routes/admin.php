@@ -73,7 +73,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
-        Route::delete('/delete/{id}', 'destroy')->name('delete');
+        Route::delete('/delete/{id}', 'delete')->name('delete');
     });
 
     Route::controller(KontrakJualController::class)->prefix('admin/transaksi/kontrakjual')->name('admin.transaksi.kontrakjual.')->group(function () {
@@ -83,7 +83,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
-        Route::delete('/delete/{id}', 'destroy')->name('delete');
+        Route::delete('/delete/{id}', 'destroy')->name('destroy');
     });
 
     Route::controller(MuatBongkarController::class)->prefix('admin/transaksi/muatbongkar')->name('admin.transaksi.muatbongkar.')->group(function () {
