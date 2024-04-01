@@ -52,15 +52,19 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <form method="post" action="{{route('admin.master.supplier.delete',$supplier->id)}}" accept-charset="UTF-8" style="display:inline">
+                                    <!-- <form method="post" action="{{route('admin.master.supplier.delete',$supplier->id)}}" accept-charset="UTF-8" style="display:inline">
                                       @csrf
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-danger btn-sm">
                                           <i class="fas fa-trash"></i>Delete
                                       </button>
-                                  </form>
+                                  </form> -->
+                                  <button type="button" data-toggle="modal" data-target="#delete{{ $supplier->id }}" class="btn btn-danger btn-sm delete">
+                                        <i class="fas fa-trash"></i>Delete
+                                    </button>
                                 </td>
                             </tr>
+                            <x-confirm-delete :id="$supplier->id" :route="route('admin.master.supplier.delete', $supplier->id)" :model="$supplier" :modelAttribute="'nama'" />
                             @endforeach
                         </tbody>
                     </table>

@@ -35,7 +35,8 @@ class CustomerController extends Controller
     {
         $customers = $request->validated();
         Customers::insert($customers);
-        Session::flash('success', 'Data Customer Telah Ditambah.');
+        // Session::flash('success', 'Data Customer Telah Ditambah.');
+        toastr()->success('Data Customer Telah Ditambah.');
         return redirect()->route('admin.master.customer.index');
     }
 
@@ -65,7 +66,8 @@ class CustomerController extends Controller
         //
         $customer = $request->validated();
         Customers::findOrFail($id)->update($customer);
-        Session::flash('success', 'Data Customer Telah Diubah.');
+        // Session::flash('success', 'Data Customer Telah Diubah.');
+        toastr()->success('Data Customer Telah Diubah.');
         return redirect()->route('admin.master.customer.index');
     }
 
@@ -75,7 +77,8 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         Customers::findOrFail($id)->delete();
-        Session::flash('success', 'Data Customer Telah Dihapus.');
+        // Session::flash('success', 'Data Customer Telah Dihapus.');
+        toastr()->success('Data Customer Telah Di hapus.');
         return redirect()->route('admin.master.customer.index');
     }
 }

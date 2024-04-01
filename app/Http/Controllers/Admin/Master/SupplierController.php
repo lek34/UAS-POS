@@ -38,7 +38,8 @@ class SupplierController extends Controller
         //
         $supplier = $request->validated();
         Supplier::insert($supplier);
-        Session::flash('success', 'Data Supplier Telah Ditambah.');
+        // Session::flash('success', 'Data Supplier Telah Ditambah.');
+        toastr()->success('Data Supplier Telah Ditambah.');
         return redirect()->route('admin.master.supplier.index');
     }
 
@@ -70,7 +71,8 @@ class SupplierController extends Controller
         //
         $supplier = $request->validated();
         Supplier::findOrFail($id)->update($supplier);
-        Session::flash('success', 'Data Supplier Telah Diubah.');
+        // Session::flash('success', 'Data Supplier Telah Diubah.');
+        toastr()->success('Data Data Supplir Telah Diubah.');
         return redirect()->route('admin.master.supplier.index');
     }
 
@@ -81,7 +83,8 @@ class SupplierController extends Controller
     {
         //
         Supplier::findOrFail($id)->delete();
-        Session::flash('success', 'Data Supplier Telah Dihapus.');
+        // Session::flash('success', 'Data Supplier Telah Dihapus.');
+        toastr()->success('Data Supplier Telah Dihapus.');
         return redirect()->route('admin.master.supplier.index');
     }
 }

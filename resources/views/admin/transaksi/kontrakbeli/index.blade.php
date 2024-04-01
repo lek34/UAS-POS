@@ -5,10 +5,10 @@
 {{-- @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
 @endif --}}
 <div class="container-fluid">
     <div class="row">
@@ -60,24 +60,12 @@
                                         </i>
                                         Edit
                                     </a>
-<<<<<<< Updated upstream
-                                    <form method="post" action="{{route('admin.transaksi.kontrakbeli.delete',$kontrakbeli->id)}}" accept-charset="UTF-8" style="display:inline">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-danger btn-sm">
-                                          <i class="fas fa-trash"></i>Delete
-                                      </button>
-                                  </form>
-                                </td>
-                            </tr>
-=======
                                     <button type="button" data-toggle="modal" data-target="#delete{{ $kontrakbeli->id }}" class="btn btn-danger btn-sm delete">
                                         <i class="fas fa-trash"></i>Delete
                                     </button>
                                 </td>
                             </tr>
-                            <x-confirm-delete :id="$kontrakbeli->id" :route="route('admin.transaksi.kontrakbeli.delete', $kontrakbeli->id)" :model="$kontrakbeli" :modelAttribute="'no'" />
->>>>>>> Stashed changes
+                            <x-confirm-delete :id="$kontrakbeli->id" :route="route('admin.master.kontrakbeli.delete', $kontrakbeli->id)" :model="$kontrakbeli" :modelAttribute="'no'" />
                             @endforeach
                         </tbody>
                     </table>
