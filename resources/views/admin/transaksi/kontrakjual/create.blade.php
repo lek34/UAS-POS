@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="supplier">Customer:</label>
-                                        <select class="form-control select2bs4" id="supplier_id" name="supplier_id"
+                                        <label for="customer">Customer:</label>
+                                        <select class="form-control select2bs4" id="customer_id" name="customer_id"
                                             style="width: 100%;">
                                             <option disabled selected value> -- Pilih Customer -- </option>
                                             @foreach ($customers as $cust)

@@ -18,4 +18,11 @@ class MuatBongkar extends Model
         return $this->hasMany(MuatDetail::class);
     }
 
+    public function totalpotongan(){
+        return $this->susut * $this->potsusut;
+    }
+
+    public function totalongkos(){
+        return $this->bongkar * $this->ongkos;
+    }
 }
