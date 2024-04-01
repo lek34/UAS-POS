@@ -11,7 +11,7 @@ class CreateKontrakJualRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class CreateKontrakJualRequest extends FormRequest
         return [
             'tanggal' => 'required',
             'no' => 'required|unique:kontrak_juals,no',
-            'supplier_id' => 'required',
+            'customer_id' => 'required',
             'kg' => 'required',
             'harga' => 'required',
             'ppnpercentage' => 'required',
