@@ -275,7 +275,7 @@
                                                             <span class="input-group-text">Rp</span>
                                                         </div>
                                                         <input type="text" class="form-control" id="potsusut"
-                                                            name="potsusut" value="0.00">
+                                                            name="potsusut" value="0">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -287,7 +287,7 @@
                                                             <span class="input-group-text">Rp</span>
                                                         </div>
                                                         <input type="text" class="form-control" id="ongkos"
-                                                            name="ongkos" value="0.00">
+                                                            name="ongkos" value="0">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -316,7 +316,7 @@
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">Rp</span>
                                                         </div>
-                                                        <input type="text" name="total_ongkos" id="total_ongkos"
+                                                        <input type="text" name="total_potsusut" id="total_potsusut"
                                                             class="form-control" value="0.00" readonly>
                                                     </div>
                                                 </td>
@@ -336,8 +336,13 @@
                                             <tr>
                                                 <th>PPH :</th>
                                                 <td>
-                                                    <input type="text" class="form-control" id="pph"
-                                                        name="pph" value="Rp 0.00" readonly>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="pph"
+                                                            name="pph" value="0">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">%</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -468,16 +473,6 @@
 
             }
 
-            function calculateTotalSusut() {
-                var muat = parseFloat($('#muat').val().replaceAll('.', '') || 0);
-                var bongkar = parseFloat($('#bongkar').val().replaceAll('.', '') || 0);
-
-                // Calculate subtotal
-                var susut = muat - bongkar;
-                $('#susut').val(formatNumber(susut));
-
-            }
-
 
             $('#brutomuat, #tarramuat,#brutobongkar, #tarrabongkar').on('input', function() {
                 maskingNumber();
@@ -486,11 +481,36 @@
             $('#nettomuat,#nettobongkar,#susut').on('input', function() {
                 maskingNumber();
             });
+            $('#potsusut').on('input', function() {
+                var susut = parseFloat($('#susut').val().replaceAll('.', '') || 0);
+                var potsusut = parseFloat($('#potsusut').val().replaceAll('.', '') || 0);
 
-            $('#muat, #bongkar').on('input', function() {
-                calculateTotalSusut();
+                var totalpotsusut = susut * potsusut;
+                $('#total_potsusut').val(formatNumber(totalpotsusut));
+
+
             });
+            $('#ongkos').on('input', function() {
+                var bongkar = parseFloat($('#bongkar').val().replaceAll('.', '') || 0);
+                var ongkos = parseFloat($('#ongkos').val().replaceAll('.', '') || 0);
+                var totalPotSusut = parseFloat($('#total_potsusut').val().replaceAll('.', '') || 0);
+                var totalOngkos = bongkar * ongkos;
+                $('#total_ongkos').val(formatNumber(totalOngkos));
 
+
+                $('#total_harga').val(formatNumber(totalOngkos - totalPotSusut));
+
+            });
+            $('#pph').on('input', function() {
+                var totalHarga = parseFloat($('#total_harga').val().replaceAll('.', '') || 0);
+                var pph = parseFloat($('#pph').val().replaceAll('.', '') || 0);
+
+                var totalPph = totalHarga * pph / 100;
+                var totalDibayar = totalHarga - totalPph;
+                $('#total_pph').val(formatNumber(totalPph));
+                $('#total_dibayar').val(formatNumber(totalDibayar));
+
+            });
             $('#form').on('submit', function() {
                 const data = getTableData();
                 console.log(data);
@@ -811,7 +831,16 @@
             // document.getElementById("muat").value = formatNumber(subTotal);
             // Display totals and update value for "bongkar"
             $('#muat').val(formatNumber(subTotal)); // assuming formatNumber is defined
+            var muat = parseFloat($('#muat').val().replaceAll('.', '') || 0);
+            var bongkar = parseFloat($('#bongkar').val().replaceAll('.', '') || 0);
 
+            // Calculate subtotal
+            var susut = muat - bongkar;
+            if (susut > 0) {
+                $('#susut').val(formatNumber(susut));
+            } else {
+                $('#susut').val(formatNumber(0));
+            }
         }
 
         function updateTotals2() {
@@ -834,6 +863,16 @@
             // Display totals
             // document.getElementById("bongkar").value = formatNumber(subTotal);
             $('#bongkar').val(formatNumber(subTotal)); // assuming formatNumber is defined
+            var muat = parseFloat($('#muat').val().replaceAll('.', '') || 0);
+            var bongkar = parseFloat($('#bongkar').val().replaceAll('.', '') || 0);
+
+            // Calculate subtotal
+            var susut = muat - bongkar;
+            if (susut > 0) {
+                $('#susut').val(formatNumber(susut));
+            } else {
+                $('#susut').val(formatNumber(0));
+            }
         }
     </script>
 @endsection
