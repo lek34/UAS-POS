@@ -182,7 +182,7 @@
                 $('#ppn').val(formatNumber(ppn));
 
                 // Calculate total
-                var total = subtotal - ppn;
+                var total = subtotal + ppn;
                 $('#totalharga').val(formatNumber(total));
             }
 

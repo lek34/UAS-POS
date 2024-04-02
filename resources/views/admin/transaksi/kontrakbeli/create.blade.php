@@ -20,13 +20,15 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{route('admin.transaksi.kontrakbeli.store')}}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.transaksi.kontrakbeli.store') }}" accept-charset="UTF-8"
+                            class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="tanggal">Tanggal:</label>
-                                        <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}" class="form-control">
+                                        <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal') }}"
+                                            class="form-control">
                                         @error('tanggal')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -35,7 +37,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="no">No:</label>
-                                        <input type="text" name="no" id="no" class="form-control" value="{{ old('no') }}" placeholder="Masukkan Nomor Invoice">
+                                        <input type="text" name="no" id="no" class="form-control"
+                                            value="{{ old('no') }}" placeholder="Masukkan Nomor Invoice">
                                         @error('no')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -44,7 +47,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="supplier">Supplier:</label>
-                                        <select class="form-control select2bs4" id="supplier_id" name="supplier_id" style="width: 100%;">
+                                        <select class="form-control select2bs4" id="supplier_id" name="supplier_id"
+                                            style="width: 100%;">
                                             <option disabled selected value> -- Pilih Supplier -- </option>
                                             @foreach ($suppliers as $supplier)
                                                 <option value="{{ $supplier->id }}">{{ $supplier->nama }}</option>
@@ -61,7 +65,8 @@
                                     <div class="form-group">
                                         <label for="kg">Kg:</label>
                                         <div class="input-group">
-                                            <input type="number" name="kg" id="kg" class="form-control" step="0.01" value="{{ old('kg') }}" placeholder="Masukkan Kg">
+                                            <input type="number" name="kg" id="kg" class="form-control"
+                                                step="0.01" value="{{ old('kg') }}" placeholder="Masukkan Kg">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Kg</span>
                                             </div>
@@ -78,7 +83,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="number" name="harga" id="harga" class="form-control" value="{{ old('harga') }}" step="0.01" placeholder="Masukkan Harga">
+                                            <input type="number" name="harga" id="harga" class="form-control"
+                                                value="{{ old('harga') }}" step="0.01" placeholder="Masukkan Harga">
                                         </div>
                                         @error('harga')
                                             <span class="text-danger">{{ $message }}</span>
@@ -94,7 +100,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="subtotal" id="subtotal" class="form-control" step="0.01" readonly>
+                                            <input type="text" name="subtotal" id="subtotal" class="form-control"
+                                                step="0.01" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +109,9 @@
                                     <div class="form-group">
                                         <label for="ppnpercentage">PPN Percentage:</label>
                                         <div class="input-group">
-                                            <input type="number" name="ppnpercentage" id="ppnpercentage" class="form-control" step="0.01" value="{{ old('ppnpercentage') }}" placeholder="Masukkan PPH Perentage">
+                                            <input type="number" name="ppnpercentage" id="ppnpercentage"
+                                                class="form-control" step="0.01" value="{{ old('ppnpercentage') }}"
+                                                placeholder="Masukkan PPH Perentage">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                             </div>
@@ -119,7 +128,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="ppn" id="ppn" class="form-control" readonly>
+                                            <input type="text" name="ppn" id="ppn" class="form-control"
+                                                readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +140,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Rp</span>
                                             </div>
-                                            <input type="text" name="totalharga" id="totalharga" class="form-control" readonly>
+                                            <input type="text" name="totalharga" id="totalharga" class="form-control"
+                                                readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -150,8 +161,9 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             calculateTotal();
+
             function formatNumber(number) {
                 return number.toLocaleString('id-ID');
             }
@@ -170,7 +182,7 @@
                 $('#ppn').val(formatNumber(ppn));
 
                 // Calculate total
-                var total = subtotal - ppn;
+                var total = subtotal + ppn;
                 $('#totalharga').val(formatNumber(total));
             }
 
