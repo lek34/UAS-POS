@@ -12,7 +12,7 @@ class KontrakJual extends Model
 
     protected $table = 'kontrak_juals';
 
-    protected $fillable = ['tanggal','no','customer_id','kg','harga','ppnpercentage'];
+    protected $fillable = ['tanggal', 'no', 'customer_id', 'kg', 'harga', 'ppnpercentage'];
 
     public function customer(): BelongsTo
     {
@@ -25,11 +25,11 @@ class KontrakJual extends Model
     }
     public function ppn()
     {
-        return $this->subtotal() * ($this->ppnpercentage/100);
+        return $this->subtotal() * ($this->ppnpercentage / 100);
     }
 
     public function total()
     {
-        return $this->subtotal() - $this->ppn();
+        return $this->subtotal() + $this->ppn();
     }
 }
