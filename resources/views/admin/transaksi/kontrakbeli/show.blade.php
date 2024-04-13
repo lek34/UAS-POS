@@ -71,6 +71,9 @@
                             </table>
                         </div>
                         <a href="{{ route('admin.transaksi.kontrakbeli.index') }}" class="btn btn-primary">Back</a>
+                        <a href="{{ route('admin.transaksi.kontrakbeli.generate.pdf', $kontrakbeli->id) }}"
+                            class="btn btn-secondary">Generate PDF</a>
+
                     </div>
                 </div>
             </div>

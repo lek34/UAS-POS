@@ -24,7 +24,7 @@ Route::get('/admin', [DashboardController::class, 'index'])->middleware('auth')-
 
 // });
 
-Route::group(['middleware'=>['auth']],function(){
+Route::group(['middleware' => ['auth']], function () {
     Route::controller(SupplierController::class)->prefix('admin/master/supplier')->name('admin.master.supplier.')->group(function () {
         Route::get('/index', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
@@ -74,6 +74,8 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'delete')->name('delete');
+        //generate pdf
+        Route::get('generatepdf/{id}', 'generatepdf')->name('generate.pdf');
     });
 
     Route::controller(KontrakJualController::class)->prefix('admin/transaksi/kontrakjual')->name('admin.transaksi.kontrakjual.')->group(function () {
