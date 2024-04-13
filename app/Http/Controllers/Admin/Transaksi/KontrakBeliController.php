@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Transaksi\KontrakBeli\CreateKontrakBeliRequest;
 use App\Http\Requests\Admin\Transaksi\KontrakBeli\UpdateKontrakBeliRequest;
 use App\Models\KontrakBeli;
 use App\Models\Supplier;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
 class KontrakBeliController extends Controller
@@ -18,7 +19,7 @@ class KontrakBeliController extends Controller
     {
         //
         $kontrakbelis = KontrakBeli::all();
-        return view('admin.transaksi.kontrakbeli.index',compact('kontrakbelis'));
+        return view('admin.transaksi.kontrakbeli.index', compact('kontrakbelis'));
     }
 
     /**
@@ -62,7 +63,7 @@ class KontrakBeliController extends Controller
         //
         $suppliers = Supplier::all();
         $kontrakbeli = KontrakBeli::findOrFail($id);
-        return view('admin.transaksi.kontrakbeli.edit', compact('suppliers','kontrakbeli'));
+        return view('admin.transaksi.kontrakbeli.edit', compact('suppliers', 'kontrakbeli'));
     }
 
     /**
@@ -89,4 +90,12 @@ class KontrakBeliController extends Controller
         toastr()->success('Data Kontrak Beli Telah Dihapus.');
         return redirect()->route('admin.transaksi.kontrakbeli.index');
     }
+
+    public function generatepdf(string $id)
+    {
+        $kontrakbeli = KontrakBeli::findOrFail($id);
+        $pdf = Pdf::loadView('admin.transaksi.kontrakbeli.pdf', compact('kontrakbeli'));
+        return $pdf->download('kontrakbeli-' . $kontrakbeli->no . '.pdf');
+    }
 }
+
