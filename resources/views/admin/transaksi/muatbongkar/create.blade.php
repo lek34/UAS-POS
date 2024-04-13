@@ -134,7 +134,7 @@
                                             <tr>
                                                 <th style="display: none;">id</th>
                                                 <th>Tanggal</th>
-                                                <th>Kontrak Beli</th>
+                                                <th>No</th>
                                                 <th>Bruto</th>
                                                 <th>Tarra</th>
                                                 <th>Netto</th>
@@ -211,7 +211,7 @@
                                             <tr>
                                                 <th style="display: none;">id</th>
                                                 <th>Tanggal</th>
-                                                <th>Kontrak Beli</th>
+                                                <th>No</th>
                                                 <th>Bruto</th>
                                                 <th>Tarra</th>
                                                 <th>Netto</th>

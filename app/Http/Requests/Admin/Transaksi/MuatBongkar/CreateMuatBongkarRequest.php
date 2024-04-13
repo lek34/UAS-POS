@@ -11,7 +11,7 @@ class CreateMuatBongkarRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class CreateMuatBongkarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'no' => 'required',
+            'supir_id' => 'required',
+            'armada_id' => 'required',
+            'tableData1' => 'required',
+            'tableData2' => 'required',
+            'muat' => 'required',
+            'bongkar' => 'required',
+            'susut' => 'required',
+            'potsusut' => 'required',
+            'ongkos' => 'required',
         ];
     }
 }
