@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Transaksi\MuatBongkar\CreateMuatBongkarRequest;
 use App\Http\Requests\Admin\Transaksi\MuatBongkar\UpdateMuatBongkarRequest;
 use App\Models\Armada;
+use App\Models\BongkarDetail;
 use App\Models\KontrakBeli;
 use App\Models\KontrakJual;
 use App\Models\MuatBongkar;
+use App\Models\MuatDetail;
 use App\Models\Supir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MuatBongkarController extends Controller
 {
@@ -35,7 +38,7 @@ class MuatBongkarController extends Controller
         $supirs = Supir::all();
         $kontrakbelis = KontrakBeli::all();
         $kontrakjuals = KontrakJual::all();
-        return view('admin.transaksi.muatbongkar.create',compact('armadas','supirs','kontrakbelis','kontrakjuals'));
+        return view('admin.transaksi.muatbongkar.create', compact('armadas', 'supirs', 'kontrakbelis', 'kontrakjuals'));
     }
 
     /**
@@ -44,6 +47,46 @@ class MuatBongkarController extends Controller
     public function store(CreateMuatBongkarRequest $request)
     {
         //
+
+
+        DB::transaction(function () use ($request) {
+            $muatbongkar = $request->validated();
+            $header = MuatBongkar::create([
+                'no' => $muatbongkar['no'],
+                'supir_id' => $muatbongkar['supir_id'],
+                'armada_id' => $muatbongkar['armada_id'],
+                'muat' => $muatbongkar['muat'],
+                'bongkar' => $muatbongkar['bongkar'],
+                'susut' => $muatbongkar['susut'],
+                'potsusut' => $muatbongkar['potsusut'],
+                'ongkos' => $muatbongkar['ongkos'],
+            ]);
+
+            $tableData1 = json_decode($muatbongkar['tableData1']);
+            foreach ($tableData1 as $item) {
+                $kontrakbeli = KontrakBeli::where('no', $item->No)->first();
+                MuatDetail::create([
+                    'muat_bongkar_id' => $header->id,
+                    'kontrak_beli_id' => $kontrakbeli->id,
+                    'tanggal' => $item->Tanggal,
+                    'bruto' => $item->Bruto,
+                    'tarra' => $item->Tarra,
+                    'netto' => $item->Netto,
+                ]);
+            }
+            $tableData2 = json_decode($muatbongkar['tableData2']);
+            foreach ($tableData2 as $item) {
+                $kontrakjual = KontrakJual::where('no', $item->No)->first();
+                BongkarDetail::create([
+                    'muat_bongkar_id' => $header->id,
+                    'kontrak_jual_id' => $kontrakjual->id,
+                    'tanggal' => $item->Tanggal,
+                    'bruto' => $item->Bruto,
+                    'tarra' => $item->Tarra,
+                    'netto' => $item->Netto,
+                ]);
+            }
+        });
 
         return redirect()->route('admin.transaksi.muatbongkar.index');
     }

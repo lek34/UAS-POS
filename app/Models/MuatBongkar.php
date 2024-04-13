@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MuatBongkar extends Model
@@ -13,16 +14,28 @@ class MuatBongkar extends Model
 
     protected $fillable = ['no', 'supir_id', 'armada_id', 'muat', 'bongkar', 'susut', 'potsusut', 'ongkos'];
 
+    public function armada(): BelongsTo
+    {
+        return $this->belongsTo(Armada::class);
+    }
+
+    public function supir(): BelongsTo
+    {
+        return $this->belongsTo(Supir::class);
+    }
+
     public function muatdetail(): HasMany
     {
         return $this->hasMany(MuatDetail::class);
     }
 
-    public function totalpotongan(){
+    public function totalpotongan()
+    {
         return $this->susut * $this->potsusut;
     }
 
-    public function totalongkos(){
+    public function totalongkos()
+    {
         return $this->bongkar * $this->ongkos;
     }
 }
