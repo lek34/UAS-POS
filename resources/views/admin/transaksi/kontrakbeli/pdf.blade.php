@@ -159,11 +159,9 @@
     <div class="signature">
         <div class="signature-row">
             <div class="signature-col">
-                <img src="" alt="">
                 <p>Seller's Signature</p>
             </div>
             <div class="signature-col">
-                <img src="" alt="">
                 <p>Buyer's Signature</p>
             </div>
         </div>
