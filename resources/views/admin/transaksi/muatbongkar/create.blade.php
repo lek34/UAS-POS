@@ -21,7 +21,7 @@
                         @endif
 
                         <form method="POST" action="{{ route('admin.transaksi.muatbongkar.store') }}" accept-charset="UTF-8"
-                            class="form-horizontal" enctype="multipart/form-data">
+                            class="form-horizontal" enctype="multipart/form-data" id="form">
                             @csrf
                             <input type="text" name="tableData1" id="tableData1" value="">
                             <input type="text" name="tableData2" id="tableData2" value="">
@@ -389,6 +389,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            // const data = [];
             calculateTotal();
 
             function formatNumber(number) {
@@ -416,11 +417,6 @@
             $('#kg, #harga, #ppnpercentage').on('input', function() {
                 calculateTotal();
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            // const data = [];
 
             function maskingNumber() {
                 var totalbrutomuat = parseInt($('#brutomuat').val().replace(/\D/g, ''), 10);
@@ -511,18 +507,28 @@
                 $('#total_dibayar').val(formatNumber(totalDibayar));
 
             });
-            $('#form').on('submit', function() {
-                const data = getTableData();
-                console.log(data);
+            $('#form').on('submit', function(event) {
+                event.preventDefault();
                 var totalHarga = parseFloat($('#total_harga').val().replaceAll('.', '') || 0);
-                var nettomuat = parseFloat($('#nettomuat').val().replaceAll('.', '') || 0);
-                var nettobongkar = parseFloat($('#nettobongkar').val().replaceAll('.', '') || 0);
+                var muat = parseFloat($('#muat').val().replaceAll('.', '') || 0);
+                var bongkar = parseFloat($('#bongkar').val().replaceAll('.', '') || 0);
                 var total_dibayar = parseFloat($('#total_dibayar').val().replaceAll('.', '') || 0);
                 var total_pph = parseFloat($('#total_pph').val().replaceAll('.', '') || 0);
                 var total_ongkos = parseFloat($('#total_ongkos').val().replaceAll('.', '') || 0);
                 var susut = parseFloat($('#susut').val().replaceAll('.', '') || 0);
                 var potsusut = parseFloat($('#potsusut').val().replaceAll('.', '') || 0);
                 var total_potsusut = parseFloat($('#total_potsusut').val().replaceAll('.', '') || 0);
+
+                $('#total_harga').val(totalHarga);
+                $('#muat').val(muat);
+                $('#bongkar').val(bongkar);
+                $('#total_dibayar').val(total_dibayar);
+                $('#total_pph').val(total_pph);
+                $('#total_ongkos').val(total_ongkos);
+                $('#susut').val(susut);
+                $('#potsusut').val(potsusut);
+                $('#total_potsusut').val(total_potsusut);
+                this.submit();
             });
         });
 
