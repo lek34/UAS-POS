@@ -44,10 +44,14 @@ class LoginRequest extends FormRequest
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
+            // throw ValidationException::withMessages([
+            //     'email' => trans('auth.failed'),
+            // ]);
+            toastr()->error('Username atau password tidak sesuai');
+        }else{
+            toastr()->success('Login Success');
         }
+
 
         RateLimiter::clear($this->throttleKey());
     }

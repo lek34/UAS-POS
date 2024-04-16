@@ -78,73 +78,73 @@
 </head>
 
 <body>
-    <h1>Kontrak Beli</h1>
+    <h1>Kontrak Jual</h1>
     <table>
         <tr>
             <th>Tanggal</th>
             <td>:</td>
-            <td>{{ \Carbon\Carbon::parse($kontrakbeli->tanggal)->format('d F Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($kontrakjual->tanggal)->format('d F Y') }}</td>
         </tr>
         <tr>
             <th>No</th>
             <td>:</td>
-            <td>{{ $kontrakbeli->no }}</td>
+            <td>{{ $kontrakjual->no }}</td>
         </tr>
         <tr>
-            <th>Supplier</th>
+            <th>Customer</th>
             <td>:</td>
-            <td>{{ $kontrakbeli['supplier']['nama'] }}</td>
+            <td>{{ $kontrakjual['customer']['nama'] }}</td>
         </tr>
         <tr>
             <th>Kg</th>
             <td>:</td>
-            <td>{{ number_format($kontrakbeli->kg / 1000, 0, ',', '.') }} MT
-                ({{ number_format($kontrakbeli->kg, 0, ',', '.') }} Kg)</td>
+            <td>{{ number_format($kontrakjual->kg / 1000, 0, ',', '.') }} MT
+                ({{ number_format($kontrakjual->kg, 0, ',', '.') }} Kg)</td>
         </tr>
         <tr>
             <th>Harga</th>
             <td>:</td>
-            <td>Rp. {{ number_format($kontrakbeli->harga, 0, ',', '.') }}</td>
+            <td>Rp. {{ number_format($kontrakjual->harga, 0, ',', '.') }}</td>
         </tr>
         <tr>
             <th>Harga (Tebilang)</th>
             <td>:</td>
-            <td>{{ ucwords(\App\Helper\terbilang($kontrakbeli->harga)) }} Rupiah</td>
+            <td>{{ ucwords(\App\Helper\terbilang($kontrakjual->harga)) }} Rupiah</td>
         </tr>
         <tr>
             <th>Sub Total</th>
             <td>:</td>
-            <td>Rp. {{ number_format($kontrakbeli->subtotal(), 0, ',', '.') }}</td>
+            <td>Rp. {{ number_format($kontrakjual->subtotal(), 0, ',', '.') }}</td>
         </tr>
         <tr>
             <th>Sub Total (Tebilang)</th>
             <td>:</td>
-            <td>{{ ucwords(\App\Helper\terbilang($kontrakbeli->subtotal())) }} Rupiah</td>
+            <td>{{ ucwords(\App\Helper\terbilang($kontrakjual->subtotal())) }} Rupiah</td>
         </tr>
         <tr>
             <th>PPN Percentage</th>
             <td>:</td>
-            <td>{{ number_format($kontrakbeli->ppnpercentage, 0, ',', '.') }}%</td>
+            <td>{{ number_format($kontrakjual->ppnpercentage, 0, ',', '.') }}%</td>
         </tr>
         <tr>
             <th>PPN</th>
             <td>:</td>
-            <td>Rp. {{ number_format($kontrakbeli->ppn(), 0, ',', '.') }}</td>
+            <td>Rp. {{ number_format($kontrakjual->ppn(), 0, ',', '.') }}</td>
         </tr>
         <tr>
             <th>PPN (Tebilang)</th>
             <td>:</td>
-            <td>{{ ucwords(\App\Helper\terbilang($kontrakbeli->ppn())) }} Rupiah</td>
+            <td>{{ ucwords(\App\Helper\terbilang($kontrakjual->ppn())) }} Rupiah</td>
         </tr>
         <tr>
             <th>Total Harga</th>
             <td>:</td>
-            <td>Rp. {{ number_format($kontrakbeli->total(), 0, ',', '.') }}</td>
+            <td>Rp. {{ number_format($kontrakjual->total(), 0, ',', '.') }}</td>
         </tr>
         <tr>
             <th>Total Harga (Tebilang)</th>
             <td>:</td>
-            <td>{{ ucwords(\App\Helper\terbilang($kontrakbeli->total())) }} Rupiah</td>
+            <td>{{ ucwords(\App\Helper\terbilang($kontrakjual->total())) }} Rupiah</td>
         </tr>
     </table>
 

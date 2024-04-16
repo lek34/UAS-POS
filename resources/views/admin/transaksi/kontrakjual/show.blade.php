@@ -70,7 +70,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ route('admin.transaksi.kontrakbeli.index') }}" class="btn btn-primary">Back</a>
+                        <a href="{{ route('admin.transaksi.kontrakjual.index') }}" class="btn btn-primary">Back</a>
+                        <a href="{{ route('admin.transaksi.kontrakjual.generate.pdf', $kontrakjual->id) }}"
+                            class="btn btn-secondary">Generate PDF</a>
                     </div>
                 </div>
             </div>
