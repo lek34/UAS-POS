@@ -514,6 +514,15 @@
             $('#form').on('submit', function() {
                 const data = getTableData();
                 console.log(data);
+                var totalHarga = parseFloat($('#total_harga').val().replaceAll('.', '') || 0);
+                var nettomuat = parseFloat($('#nettomuat').val().replaceAll('.', '') || 0);
+                var nettobongkar = parseFloat($('#nettobongkar').val().replaceAll('.', '') || 0);
+                var total_dibayar = parseFloat($('#total_dibayar').val().replaceAll('.', '') || 0);
+                var total_pph = parseFloat($('#total_pph').val().replaceAll('.', '') || 0);
+                var total_ongkos = parseFloat($('#total_ongkos').val().replaceAll('.', '') || 0);
+                var susut = parseFloat($('#susut').val().replaceAll('.', '') || 0);
+                var potsusut = parseFloat($('#potsusut').val().replaceAll('.', '') || 0);
+                var total_potsusut = parseFloat($('#total_potsusut').val().replaceAll('.', '') || 0);
             });
         });
 
