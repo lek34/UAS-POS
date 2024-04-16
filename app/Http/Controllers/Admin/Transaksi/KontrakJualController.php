@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Transaksi;
 
+use App\Models\Supplier;
 use App\Models\Customers;
 use App\Models\KontrakJual;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Admin\Transaksi\KontrakJual\CreateKontrakJualRequest;
 use App\Http\Requests\Admin\Transaksi\KontrakJual\UpdateKontrakJualRequest;
-use App\Models\Supplier;
 
 class KontrakJualController extends Controller
 {
@@ -84,5 +85,12 @@ class KontrakJualController extends Controller
         // Session::flash('success', 'Data Kontrak Jual Telah Dihapus.');
         toastr()->success('Data Kontrak Jual Telah Dihapus.');
         return redirect()->route('admin.transaksi.kontrakjual.index');
+    }
+
+    public function generatepdf(string $id)
+    {
+        $kontrakjual = KontrakJual::findOrFail($id);
+        $pdf = Pdf::loadView('admin.transaksi.kontrakjual.pdf', compact('kontrakjual'));
+        return $pdf->download('kontrakjual-' . $kontrakjual->no . '.pdf');
     }
 }
