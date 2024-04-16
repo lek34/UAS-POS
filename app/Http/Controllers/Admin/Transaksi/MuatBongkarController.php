@@ -125,6 +125,14 @@ class MuatBongkarController extends Controller
     public function destroy(string $id)
     {
         //
+
+
+        MuatDetail::where('kontrak_beli_id',$id)->delete();
+        BongkarDetail::where('kontrak_jual_id',$id)->delete();
+        MuatBongkar::where('id',$id)->delete();
+
+        // Session::flash('success', 'Data Kontrak Jual Telah Dihapus.');
+        toastr()->success('Data Muat Bongkar Telah Dihapus.');
         return redirect()->route('admin.transaksi.muatbongkar.index');
     }
 }
