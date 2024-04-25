@@ -23,8 +23,8 @@
                         <form method="POST" action="{{ route('admin.transaksi.muatbongkar.store') }}" accept-charset="UTF-8"
                             class="form-horizontal" enctype="multipart/form-data" id="form">
                             @csrf
-                            <input type="text" name="tableData1" id="tableData1" value="">
-                            <input type="text" name="tableData2" id="tableData2" value="">
+                            <input type="hidden" name="tableData1" id="tableData1" value="">
+                            <input type="hidden" name="tableData2" id="tableData2" value="">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
