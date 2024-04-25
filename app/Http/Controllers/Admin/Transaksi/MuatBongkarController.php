@@ -60,6 +60,7 @@ class MuatBongkarController extends Controller
                 'susut' => $muatbongkar['susut'],
                 'potsusut' => $muatbongkar['potsusut'],
                 'ongkos' => $muatbongkar['ongkos'],
+                'pphpercentage' => $muatbongkar['pph'],
             ]);
 
             $tableData1 = json_decode($muatbongkar['tableData1']);

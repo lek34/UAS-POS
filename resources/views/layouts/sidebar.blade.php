@@ -1,7 +1,7 @@
 <!-- Brand Logo -->
 <a href="{{ route('admin.dashboard') }}" class="brand-link">
 
-    <img src="/palm-oil.png" alt="AdminLTE Logo" class="brand-image " style="opacity: ">
+    <img src="/palm-oil.png" alt="AdminLTE Logo" class="brand-image" style="opacity: ">
     <span class="brand-text font-weight-bold">CV. Putra Makmur</span>
 
 </a>

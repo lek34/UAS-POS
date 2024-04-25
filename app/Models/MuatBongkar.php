@@ -12,7 +12,7 @@ class MuatBongkar extends Model
     use HasFactory;
     protected $table = 'muat_bongkars';
 
-    protected $fillable = ['no', 'supir_id', 'armada_id', 'muat', 'bongkar', 'susut', 'potsusut', 'ongkos'];
+    protected $fillable = ['no', 'supir_id', 'armada_id', 'muat', 'bongkar', 'susut', 'potsusut', 'ongkos', 'pphpercentage'];
 
     public function armada(): BelongsTo
     {
@@ -28,6 +28,10 @@ class MuatBongkar extends Model
     {
         return $this->hasMany(MuatDetail::class);
     }
+    public function bongkardetail(): HasMany
+    {
+        return $this->hasMany(BongkarDetail::class);
+    }
 
     public function totalpotongan()
     {
@@ -38,4 +42,18 @@ class MuatBongkar extends Model
     {
         return $this->bongkar * $this->ongkos;
     }
+    public function ongkosdipotong()
+    {
+        return $this->totalongkos() - $this->totalpotongan();
+    }
+    public function pph()
+    {
+        return $this->ongkosdipotong() * ($this->pphpercentage / 100);
+    }
+    public function totaldibayar()
+    {
+        return $this->ongkosdipotong() - $this->pph();
+
+    }
+
 }

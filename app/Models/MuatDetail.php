@@ -19,7 +19,7 @@ class MuatDetail extends Model
 
     public function kontrakbeli(): BelongsTo
     {
-        return $this->belongsTo(KontrakBeli::class);
+        return $this->belongsTo(KontrakBeli::class, 'kontrak_beli_id', 'id');
     }
 
 }
