@@ -19,6 +19,6 @@ class BongkarDetail extends Model
 
     public function kontrakjual(): BelongsTo
     {
-        return $this->belongsTo(KontrakJual::class);
+        return $this->belongsTo(KontrakJual::class, 'kontrak_jual_id', 'id');
     }
 }
