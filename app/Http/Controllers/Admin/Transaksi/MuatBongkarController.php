@@ -127,9 +127,9 @@ class MuatBongkarController extends Controller
         //
 
 
-        MuatDetail::where('kontrak_beli_id',$id)->delete();
-        BongkarDetail::where('kontrak_jual_id',$id)->delete();
-        MuatBongkar::where('id',$id)->delete();
+        MuatDetail::where('muat_bongkar_id', $id)->delete();
+        BongkarDetail::where('muat_bongkar_id', $id)->delete();
+        MuatBongkar::where('id', $id)->delete();
 
         // Session::flash('success', 'Data Kontrak Jual Telah Dihapus.');
         toastr()->success('Data Muat Bongkar Telah Dihapus.');
