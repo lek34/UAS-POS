@@ -68,10 +68,16 @@
                                                 class="btn btn-danger btn-sm delete">
                                                 <i class="fas fa-trash"></i>Delete
                                             </button>
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#payment{{ $kontrakbeli->id }}"
+                                                class="btn btn-success btn-sm delete">
+                                                <i class="fas fa-file-invoice"> </i>Payment
+                                            </button>
                                         </td>
                                     </tr>
                                     <x-confirm-delete :id="$kontrakbeli->id" :route="route('admin.transaksi.kontrakbeli.delete', $kontrakbeli->id)" :model="$kontrakbeli"
                                         :modelAttribute="'no'" />
+                                    <x-payment :id="$kontrakbeli->id" :route="route('admin.transaksi.payment.kontrakbeli.store', $kontrakbeli->id)" :model="$kontrakbeli" :kontrak="'kontrak_beli_id'" :modelAttribute="'no'" />
                                 @endforeach
                             </tbody>
                         </table>

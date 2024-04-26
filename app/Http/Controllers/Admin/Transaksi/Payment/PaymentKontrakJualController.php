@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Transaksi\Payment;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Transaksi\Payment\KontrakJual\StorePaymentKontrakJualRequest;
+use App\Models\PaymentKontrakBeli;
+use App\Models\PaymentKontrakJual;
 
 class PaymentKontrakJualController extends Controller
 {
@@ -26,9 +29,12 @@ class PaymentKontrakJualController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePaymentKontrakJualRequest $request)
     {
         //
+        $payment = $request->validated();
+        PaymentKontrakJual::create($payment);
+        return redirect()->route('admin.transaksi.kontrakjual.index');
     }
 
     /**

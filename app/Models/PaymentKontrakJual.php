@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PaymentKontrakJual extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['tanggal', 'kontrak_beli_id', 'totalbayar'];
+    protected $fillable = ['tanggal', 'kontrak_jual_id', 'totalbayar'];
 
     public function kontrakjual(): BelongsTo
     {

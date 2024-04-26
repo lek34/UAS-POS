@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\Transaksi\MuatBongkarController;
+use App\Models\PaymentKontrakBeli;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Master\SupirController;
 use App\Http\Controllers\Admin\Master\ArmadaController;
 use App\Http\Controllers\Admin\Master\CustomerController;
 use App\Http\Controllers\Admin\Master\SupplierController;
 use App\Http\Controllers\Admin\Transaksi\KontrakBeliController;
 use App\Http\Controllers\Admin\Transaksi\KontrakJualController;
-
+use App\Http\Controllers\Admin\Transaksi\MuatBongkarController;
+use App\Http\Controllers\Admin\Transaksi\Payment\PaymentKontrakBeliController;
+use App\Http\Controllers\Admin\Transaksi\Payment\PaymentKontrakJualController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -91,6 +93,26 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(MuatBongkarController::class)->prefix('admin/transaksi/muatbongkar')->name('admin.transaksi.muatbongkar.')->group(function () {
         Route::get('/index', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/delete/{id}', 'destroy')->name('delete');
+    });
+
+    Route::controller(PaymentKontrakBeliController::class)->middleware('auth')->prefix('admin/transaksi/payment/kontrakbeli')->name('admin.transaksi.payment.kontrakbeli.')->group(function () {
+        Route::get('/index/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+        Route::delete('/delete/{id}', 'destroy')->name('delete');
+    });
+
+    Route::controller(PaymentKontrakJualController::class)->middleware('auth')->prefix('admin/transaksi/payment/kontrakjual')->name('admin.transaksi.payment.kontrakjual.')->group(function () {
+        Route::get('/index/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/show/{id}', 'show')->name('show');
