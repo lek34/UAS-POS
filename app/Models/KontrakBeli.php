@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\PaymentKontrakBeli;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class KontrakBeli extends Model
 {
@@ -32,6 +34,20 @@ class KontrakBeli extends Model
     public function total()
     {
         return $this->subtotal() + $this->ppn();
+    }
+
+    public function detailbayarkontrakbeli(): HasMany
+    {
+        return $this->hasMany(PaymentKontrakBeli::class);
+    }
+
+    public function getSisaBayar(){
+        $totalHarga = 0;
+
+        foreach ($this->detailbayarkontrakbeli as $detail) {
+            $totalHarga += $detail->totalharga();
+        }
+        return $totalHarga;
     }
 
 

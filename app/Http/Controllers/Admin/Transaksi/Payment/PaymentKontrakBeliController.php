@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Transaksi\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Transaksi\Payment\KontrakBeli\StorePaymentKontrakBeliRequest;
+use App\Models\PaymentKontrakBeli;
 use Illuminate\Http\Request;
 
 class PaymentKontrakBeliController extends Controller
@@ -26,9 +28,12 @@ class PaymentKontrakBeliController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePaymentKontrakBeliRequest $request)
     {
         //
+        $payment = $request->validated();
+        PaymentKontrakBeli::create($payment);
+        return redirect()->route('admin.transaksi.kontrakbeli.index');
     }
 
     /**

@@ -17,4 +17,9 @@ class PaymentKontrakBeli extends Model
     {
         return $this->belongsTo(KontrakBeli::class);
     }
+
+    public function totalharga()
+    {
+        return $this->totalbayar;
+    }
 }
