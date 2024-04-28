@@ -35,6 +35,7 @@
                                     <th>Sub Total</th>
                                     <th>PPN</th>
                                     <th>Total</th>
+                                    <th>Sisa Stock</th>
                                     <th style="width: 20%">Action</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                         <td>{{ number_format($kontrakbeli->subtotal(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakbeli->ppn(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakbeli->total(), 0, ',', '.') }}</td>
+                                        <td>{{ number_format($kontrakbeli->sisastok(), 0, ',', '.') }}</td>
                                         <td class="project-actions text-right">
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('admin.transaksi.kontrakbeli.show', $kontrakbeli->id) }}">
@@ -68,6 +70,12 @@
                                                 class="btn btn-danger btn-sm delete">
                                                 <i class="fas fa-trash"></i>Delete
                                             </button>
+                                            <a class="btn btn-info btn-sm"
+                                                href="{{ route('admin.transaksi.kontrakbeli.history', $kontrakbeli->id) }}">
+                                                <i class="fas fa-history">
+                                                </i>
+                                                History
+                                            </a>
                                             <button type="button" data-toggle="modal"
                                                 data-target="#payment{{ $kontrakbeli->id }}"
                                                 class="btn btn-success btn-sm delete">
@@ -77,7 +85,8 @@
                                     </tr>
                                     <x-confirm-delete :id="$kontrakbeli->id" :route="route('admin.transaksi.kontrakbeli.delete', $kontrakbeli->id)" :model="$kontrakbeli"
                                         :modelAttribute="'no'" />
-                                    <x-payment :id="$kontrakbeli->id" :route="route('admin.transaksi.payment.kontrakbeli.store', $kontrakbeli->id)" :model="$kontrakbeli" :kontrak="'kontrak_beli_id'" :modelAttribute="'no'" />
+                                    <x-payment :id="$kontrakbeli->id" :route="route('admin.transaksi.payment.kontrakbeli.store', $kontrakbeli->id)" :model="$kontrakbeli" :kontrak="'kontrak_beli_id'"
+                                        :modelAttribute="'no'" />
                                 @endforeach
                             </tbody>
                         </table>

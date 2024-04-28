@@ -97,5 +97,11 @@ class KontrakBeliController extends Controller
         $pdf = Pdf::loadView('admin.transaksi.kontrakbeli.pdf', compact('kontrakbeli'));
         return $pdf->download('kontrakbeli-' . $kontrakbeli->no . '.pdf');
     }
+
+    public function history(string $id)
+    {
+        $kontrakbeli = KontrakBeli::findOrFail($id);
+        return view('admin.transaksi.kontrakbeli.history', compact('kontrakbeli'));
+    }
 }
 

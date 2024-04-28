@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class KontrakJual extends Model
 {
@@ -31,5 +32,17 @@ class KontrakJual extends Model
     public function total()
     {
         return $this->subtotal() + $this->ppn();
+    }
+    public function bongkardetail(): HasMany
+    {
+        return $this->hasMany(BongkarDetail::class, 'kontrak_jual_id', 'id');
+    }
+    public function sisastok()
+    {
+        $total = 0;
+        foreach ($this->bongkardetail as $detail) {
+            $total += $detail->netto;
+        }
+        return $this->kg - $total;
     }
 }

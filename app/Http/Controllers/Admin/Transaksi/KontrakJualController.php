@@ -20,7 +20,7 @@ class KontrakJualController extends Controller
     public function index()
     {
         $kontrakjuals = KontrakJual::all();
-        return view('admin.transaksi.kontrakjual.index',compact('kontrakjuals'));
+        return view('admin.transaksi.kontrakjual.index', compact('kontrakjuals'));
     }
 
     /**
@@ -29,7 +29,7 @@ class KontrakJualController extends Controller
     public function create()
     {
         $customers = Customers::all();
-        return view('admin.transaksi.kontrakjual.create',compact('customers'));
+        return view('admin.transaksi.kontrakjual.create', compact('customers'));
     }
 
     /**
@@ -51,7 +51,7 @@ class KontrakJualController extends Controller
     {
 
         $kontrakjual = KontrakJual::findOrFail($id);
-        return view ('admin.transaksi.kontrakjual.show', compact('kontrakjual'));
+        return view('admin.transaksi.kontrakjual.show', compact('kontrakjual'));
     }
 
     /**
@@ -61,7 +61,7 @@ class KontrakJualController extends Controller
     {
         $customers = Customers::all();
         $kontrakjual = KontrakJual::findOrFail($id);
-        return view ('admin.transaksi.kontrakjual.edit', compact('customers','kontrakjual'));
+        return view('admin.transaksi.kontrakjual.edit', compact('customers', 'kontrakjual'));
     }
 
     /**
@@ -92,5 +92,10 @@ class KontrakJualController extends Controller
         $kontrakjual = KontrakJual::findOrFail($id);
         $pdf = Pdf::loadView('admin.transaksi.kontrakjual.pdf', compact('kontrakjual'));
         return $pdf->download('kontrakjual-' . $kontrakjual->no . '.pdf');
+    }
+    public function history(string $id)
+    {
+        $kontrakjual = KontrakJual::findOrFail($id);
+        return view('admin.transaksi.kontrakjual.history', compact('kontrakjual'));
     }
 }
