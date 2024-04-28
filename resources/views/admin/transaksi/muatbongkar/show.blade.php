@@ -153,11 +153,11 @@
                                     </tr>
                                     <tr>
                                         <th>PPH Percentage</th>
-                                        <td>Rp. {{ number_format($muatbongkar->pphpercentage, 0, ',', '.') }} %</td>
+                                        <td>{{ $muatbongkar->pphpercentage }} %</td>
                                     </tr>
                                     <tr>
                                         <th>PPH</th>
-                                        <td>Rp. {{ number_format($muatbongkar->pph(), 0, ',', '.') }}</td>
+                                        <td>Rp{{ number_format($muatbongkar->pph(), 0, ',', '.') }}</td>
                                     </tr>
                                     <tr>
                                         <th>Total Dibayar</th>

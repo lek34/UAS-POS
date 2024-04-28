@@ -32,6 +32,7 @@ class CreateMuatBongkarRequest extends FormRequest
             'susut' => 'required',
             'potsusut' => 'required',
             'ongkos' => 'required',
+            'pph' => 'required',
         ];
     }
 }

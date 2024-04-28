@@ -338,7 +338,7 @@
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control" id="pph"
-                                                            name="pph" value="0">
+                                                            name="pph" value="0" step="0.01">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">%</span>
                                                         </div>
@@ -499,7 +499,7 @@
             });
             $('#pph').on('input', function() {
                 var totalHarga = parseFloat($('#total_harga').val().replaceAll('.', '') || 0);
-                var pph = parseFloat($('#pph').val().replaceAll('.', '') || 0);
+                var pph = parseFloat($('#pph').val() || 0);
 
                 var totalPph = totalHarga * pph / 100;
                 var totalDibayar = totalHarga - totalPph;
