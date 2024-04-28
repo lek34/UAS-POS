@@ -56,4 +56,12 @@ class KontrakBeli extends Model
         return $this->hasMany(MuatDetail::class);
     }
 
+    public function sisastok()
+    {
+        $total = 0;
+        foreach ($this->muatdetail as $detail) {
+            $total += $detail->netto;
+        }
+        return $this->kg - $total;
+    }
 }

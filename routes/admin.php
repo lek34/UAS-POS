@@ -90,6 +90,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'destroy')->name('destroy');
+        //history
+        Route::get('/history/{id}', 'history')->name('history');
         Route::get('generatepdf/{id}', 'generatepdf')->name('generate.pdf');
     });
 

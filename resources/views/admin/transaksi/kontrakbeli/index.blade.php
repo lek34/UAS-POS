@@ -35,6 +35,7 @@
                                     <th>Sub Total</th>
                                     <th>PPN</th>
                                     <th>Total</th>
+                                    <th>Sisa Stock</th>
                                     <th style="width: 20%">Action</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                         <td>{{ number_format($kontrakbeli->subtotal(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakbeli->ppn(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakbeli->total(), 0, ',', '.') }}</td>
+                                        <td>{{ number_format($kontrakbeli->sisastok(), 0, ',', '.') }}</td>
                                         <td class="project-actions text-right">
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('admin.transaksi.kontrakbeli.show', $kontrakbeli->id) }}">

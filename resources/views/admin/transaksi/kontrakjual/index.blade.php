@@ -35,6 +35,7 @@
                                     <th>Sub Total</th>
                                     <th>PPN</th>
                                     <th>Total</th>
+                                    <th>Sisa Stok</th>
                                     <th style="width: 20%">Action</th>
                                 </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                         <td>{{ number_format($kontrakjual->subtotal(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakjual->ppn(), 0, ',', '.') }}</td>
                                         <td>{{ number_format($kontrakjual->total(), 0, ',', '.') }}</td>
+                                        <td>{{ number_format($kontrakjual->sisastok(), 0, ',', '.') }}</td>
                                         <td class="project-actions text-right">
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('admin.transaksi.kontrakjual.show', $kontrakjual->id) }}">
@@ -68,6 +70,12 @@
                                                 class="btn btn-danger btn-sm delete">
                                                 <i class="fas fa-trash"></i>Delete
                                             </button>
+                                            <a class="btn btn-info btn-sm"
+                                                href="{{ route('admin.transaksi.kontrakjual.history', $kontrakjual->id) }}">
+                                                <i class="fas fa-history">
+                                                </i>
+                                                History
+                                            </a>
                                             <button type="button" data-toggle="modal"
                                                 data-target="#payment{{ $kontrakjual->id }}"
                                                 class="btn btn-success btn-sm delete">

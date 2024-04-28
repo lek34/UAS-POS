@@ -14,7 +14,7 @@ class BongkarDetail extends Model
 
     public function muatbongkar(): BelongsTo
     {
-        return $this->belongsTo(MuatBongkar::class);
+        return $this->belongsTo(MuatBongkar::class, 'muat_bongkar_id', 'id');
     }
 
     public function kontrakjual(): BelongsTo
