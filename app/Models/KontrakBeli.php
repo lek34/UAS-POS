@@ -41,7 +41,8 @@ class KontrakBeli extends Model
         return $this->hasMany(PaymentKontrakBeli::class);
     }
 
-    public function getSisaBayar(){
+    public function getSisaBayar()
+    {
         $totalHarga = 0;
 
         foreach ($this->detailbayarkontrakbeli as $detail) {
@@ -50,5 +51,9 @@ class KontrakBeli extends Model
         return $totalHarga;
     }
 
+    public function muatdetail(): HasMany
+    {
+        return $this->hasMany(MuatDetail::class);
+    }
 
 }

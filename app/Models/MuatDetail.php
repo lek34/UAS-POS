@@ -14,7 +14,7 @@ class MuatDetail extends Model
     protected $fillable = ['muat_bongkar_id', 'kontrak_beli_id', 'tanggal', 'bruto', 'tarra', 'netto'];
     public function muatbongkar(): BelongsTo
     {
-        return $this->belongsTo(MuatBongkar::class);
+        return $this->belongsTo(MuatBongkar::class, 'muat_bongkar_id', 'id');
     }
 
     public function kontrakbeli(): BelongsTo
