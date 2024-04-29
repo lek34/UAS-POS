@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Master\Customer\CreateCustomerRequest;
 use App\Http\Requests\Admin\Master\Customer\UpdateCustomerRequest;
 use App\Models\Customers;
+use App\Models\KontrakJual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +18,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customers::all();
-        return view('admin.master.customer.index',compact('customers'));
+        return view('admin.master.customer.index', compact('customers'));
     }
 
     /**
@@ -46,7 +47,7 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customers::findOrFail($id);
-        return view('admin.master.customer.show',compact('customer'));
+        return view('admin.master.customer.show', compact('customer'));
     }
 
     /**
@@ -55,7 +56,7 @@ class CustomerController extends Controller
     public function edit(string $id)
     {
         $customer = Customers::findOrFail($id);
-        return view('admin.master.customer.edit',compact('customer'));
+        return view('admin.master.customer.edit', compact('customer'));
     }
 
     /**
@@ -80,5 +81,13 @@ class CustomerController extends Controller
         // Session::flash('success', 'Data Customer Telah Dihapus.');
         toastr()->success('Data Customer Telah Di hapus.');
         return redirect()->route('admin.master.customer.index');
+    }
+
+    public function history(string $id)
+    {
+        // Mengambil customer bersama semua kontrak jual yang terkait
+        $customer = Customers::with('kontrakjual')->findOrFail($id);
+
+        return view('admin.master.customer.history', compact('customer'));
     }
 }

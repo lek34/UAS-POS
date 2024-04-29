@@ -73,7 +73,7 @@
                                 <h3>Tambah Muat</h3>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="tanggal_muat">Tanggal Muat:</label>
                                         <input type="date" name="tanggal_muat" id="tanggal_muat"
@@ -83,7 +83,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="kontrak_beli_id">Kontrak Beli:</label>
                                         <select class="form-control select2bs4" id="kontrak_beli_id" name="kontrak_beli_id"
@@ -95,35 +95,44 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="sisa">Sisa :</label>
+                                        <input type="text" name="sisakontrakbeli" id="sisakontrakbeli"
+                                            class="form-control" placeholder="Sisa" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="brutomuat">Bruto:</label>
                                         <input type="number" name="brutomuat" id="brutomuat" class="form-control"
                                             placeholder="Masukkan Bruto">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="tarramuat">Tarra:</label>
                                         <input type="number" name="tarramuat" id="tarramuat" class="form-control"
                                             placeholder="Masukkan Tarra">
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="nettomuat">Netto:</label>
                                         <input type="number" name="nettomuat" id="nettomuat" class="form-control"
                                             placeholder="Masukkan Netto" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
 
-                                        <button type="button" style="margin-top: 32px" class="btn btn-success"
-                                            onclick="addRow1()"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+                            </div>
+                            <div class="row" style="display: flex; justify-content: flex-end;margin-right: 5px;">
+                                <div class="form-group">
+                                    {{-- <input style="margin-top: 5px" class="btn btn-success" type="submit" value="Tambah"> --}}
 
-                                    </div>
+                                    <button type="button" style="margin-top: 32px" class="btn btn-success"
+                                        onclick="addRow1()"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+
                                 </div>
                             </div>
                             <div class="row mt-4 mb-4">
@@ -396,6 +405,23 @@
                 return number.toLocaleString('id-ID');
             }
 
+            // Event handler ketika nilai berubah
+            $('#kontrak_beli_id').on('change', function() {
+                var kontrakId = $(this).val(); // mendapatkan ID kontrak yang dipilih
+
+                fetch('sisastokkontrakbeli/' + kontrakId)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error(data.error);
+                        } else {
+                            const formattedSisaStok = formatNumber(data.sisastok);
+                            document.getElementById('sisakontrakbeli').value = formattedSisaStok;
+                        }
+                    })
+                    .catch(error => console.error('Error fetching data: ', error));
+            });
+
             function calculateTotal() {
                 var kg = parseFloat($('#kg').val());
                 var harga = parseFloat($('#harga').val());
@@ -660,7 +686,6 @@
         //     updateTotals();
         // };
 
-
         function addRow1() {
             // const data = [];
             // Get values from the input fields
@@ -669,57 +694,78 @@
             var brutomuat = document.getElementById("brutomuat");
             var tarramuat = document.getElementById("tarramuat");
             var nettomuat = document.getElementById("nettomuat");
+            var sisakontrakbeli = document.getElementById("sisakontrakbeli");
+            var sisakontrakbeliRaw = document.getElementById("sisakontrakbeli").value; // Mengambil sisa kontrak beli
+            var nettomuatRaw = document.getElementById("nettomuat").value; // Dapatkan nilai sebagai string
+            var nettomuatValue = parseFloat(nettomuatRaw.replace(/\./g, '')); // Hapus titik dan konversi ke float
 
-            // Create a new row in the table
-            var table = document.getElementById("itemTable1");
-            var row = table.insertRow(table.rows.length);
-            var cell0 = row.insertCell(0);
-            var cell1 = row.insertCell(1);
-            var cell2 = row.insertCell(2);
-            var cell3 = row.insertCell(3);
-            var cell4 = row.insertCell(4);
-            var cell5 = row.insertCell(5);
-            var cell6 = row.insertCell(6);
+            var sisaKontrakBeliValue = parseFloat(sisakontrakbeliRaw.replace(/\./g, ''));
 
-            // Disable the input fields after adding an item
-            // document.getElementById("id_supplier").value = document.getElementById('id_supp').value
-            // document.getElementById("tanggal").readOnly = true;
+            // Memeriksa apakah netto lebih besar dari sisa kontrak beli
+            if (nettomuatValue > sisaKontrakBeliValue) {
+                // Clear input fields after adding a row
+                $("#kontrak_beli_id").val(null).trigger("change");
+                tanggal_muat.value = "";
+                sisakontrakbeli.value = "";
+                brutomuat.value = "";
+                tarramuat.value = "";
+                nettomuat.value = "";
+                // Menampilkan alert dengan toastr
+                toastr.error('Nilai Netto tidak boleh melebihi sisa kontrak beli');
+            } else {
+                // Create a new row in the table
+                var table = document.getElementById("itemTable1");
+                var row = table.insertRow(table.rows.length);
+                var cell0 = row.insertCell(0);
+                var cell1 = row.insertCell(1);
+                var cell2 = row.insertCell(2);
+                var cell3 = row.insertCell(3);
+                var cell4 = row.insertCell(4);
+                var cell5 = row.insertCell(5);
+                var cell6 = row.insertCell(6);
 
-            // document.getElementById("id_supp").disabled = true;
-            // document.getElementById("jatuh_tempo").readOnly = true;
-            // Get existing table data (if any)
+                // Disable the input fields after adding an item
+                // document.getElementById("id_supplier").value = document.getElementById('id_supp').value
+                // document.getElementById("tanggal").readOnly = true;
 
-            // Set the cell values
-            cell0.innerHTML = kontrak_beli_id.options[kontrak_beli_id.selectedIndex].value;
-            cell0.style.display = 'none'
-            cell1.innerHTML = tanggal_muat.value;
-            cell2.innerHTML = kontrak_beli_id.options[kontrak_beli_id.selectedIndex].text;
-            // cell2.innerHTML =  '<span class="clickable" onclick="fetchHistoryPembelian('+barang.options[barang.selectedIndex].value+')">' + barang.options[barang.selectedIndex].text + '</span>';
-            cell3.innerHTML = brutomuat.value;
-            cell4.innerHTML = tarramuat.value;
-            cell5.innerHTML = nettomuat.value;
-            cell6.innerHTML =
-                '<button type="button" class="btn btn-danger btn-sm" onclick="deleteRow1(this)">Delete</button>';
+                // document.getElementById("id_supp").disabled = true;
+                // document.getElementById("jatuh_tempo").readOnly = true;
+                // Get existing table data (if any)
 
-            // Clear input fields after adding a row
-            $("#kontrak_beli_id").val(null).trigger("change");
-            tanggal_muat.value = "";
-            brutomuat.value = "";
-            tarramuat.value = "";
-            nettomuat.value = "";
+                // Set the cell values
+                cell0.innerHTML = kontrak_beli_id.options[kontrak_beli_id.selectedIndex].value;
+                cell0.style.display = 'none'
+                cell1.innerHTML = tanggal_muat.value;
+                cell2.innerHTML = kontrak_beli_id.options[kontrak_beli_id.selectedIndex].text;
+                // cell2.innerHTML =  '<span class="clickable" onclick="fetchHistoryPembelian('+barang.options[barang.selectedIndex].value+')">' + barang.options[barang.selectedIndex].text + '</span>';
+                cell3.innerHTML = brutomuat.value;
+                cell4.innerHTML = tarramuat.value;
+                cell5.innerHTML = nettomuat.value;
+                cell6.innerHTML =
+                    '<button type="button" class="btn btn-danger btn-sm" onclick="deleteRow1(this)">Delete</button>';
 
-            // Call pushItemToArray to get the table data as an array of objects
+                // Clear input fields after adding a row
+                $("#kontrak_beli_id").val(null).trigger("change");
+                tanggal_muat.value = "";
+                sisaKontrakBeli.value = "";
+                brutomuat.value = "";
+                tarramuat.value = "";
+                nettomuat.value = "";
 
-            var tableDataArray = pushItemToArray1();
+                // Call pushItemToArray to get the table data as an array of objects
 
-            // Convert the array of objects to a JSON string
-            var jsonDataString = JSON.stringify(tableDataArray);
+                var tableDataArray = pushItemToArray1();
 
-            // Set the JSON string as the value of the hidden input field
-            document.getElementById("tableData1").value = jsonDataString;
+                // Convert the array of objects to a JSON string
+                var jsonDataString = JSON.stringify(tableDataArray);
 
-            updateTotals1();
+                // Set the JSON string as the value of the hidden input field
+                document.getElementById("tableData1").value = jsonDataString;
+
+                updateTotals1();
+            }
         }
+
 
         function addRow2() {
             // const data = [];

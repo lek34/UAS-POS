@@ -93,6 +93,7 @@ class KontrakJualController extends Controller
         $pdf = Pdf::loadView('admin.transaksi.kontrakjual.pdf', compact('kontrakjual'));
         return $pdf->download('kontrakjual-' . $kontrakjual->no . '.pdf');
     }
+    
     public function history(string $id)
     {
         $kontrakjual = KontrakJual::findOrFail($id);

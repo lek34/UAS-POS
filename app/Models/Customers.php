@@ -17,6 +17,6 @@ class Customers extends Model
 
     public function kontrakjual(): HasMany
     {
-        return $this->hasMany(kontrakjual::class);
+        return $this->hasMany(kontrakjual::class,'customer_id', 'id');
     }
 }
