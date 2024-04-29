@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\Laporan\LaporanGajiSupirController;
+use App\Http\Controllers\Admin\Laporan\LaporanKeuntunganController;
+use App\Http\Controllers\Admin\Laporan\LaporanMuatBongkarController;
 use App\Models\PaymentKontrakBeli;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -105,8 +108,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'destroy')->name('delete');
-         // Route untuk mendapatkan sisa stok
-         Route::get('/sisastokkontrakbeli/{id}','sisastokkontrakbeli')->name('sisastokkontrakbeli');
+        // Route untuk mendapatkan sisa stok
+        Route::get('/sisastokkontrakbeli/{id}', 'sisastokkontrakbeli')->name('sisastokkontrakbeli');
     });
 
     Route::controller(PaymentKontrakBeliController::class)->middleware('auth')->prefix('admin/transaksi/payment/kontrakbeli')->name('admin.transaksi.payment.kontrakbeli.')->group(function () {
@@ -128,6 +131,22 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'destroy')->name('delete');
     });
+
+    Route::controller(LaporanMuatBongkarController::class)->middleware('auth')->prefix('admin/laporan/muatbongkar')->name('admin.laporan.muatbongkar.')->group(function () {
+        Route::get('/index/', 'index')->name('index');
+        Route::post('/generate', 'generate')->name('generate');
+    });
+
+    Route::controller(LaporanKeuntunganController::class)->middleware('auth')->prefix('admin/laporan/keuntungan')->name('admin.laporan.keuntungan.')->group(function () {
+        Route::get('/index/', 'index')->name('index');
+        Route::post('/generate', 'generate')->name('generate');
+    });
+
+    Route::controller(LaporanGajiSupirController::class)->middleware('auth')->prefix('admin/laporan/gajisupir')->name('admin.laporan.gajisupir.')->group(function () {
+        Route::get('/index/', 'index')->name('index');
+        Route::post('/generate', 'generate')->name('generate');
+    });
+
 });
 
 
