@@ -123,8 +123,33 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
-                    <p>Laporan</p>
+                    <p>
+                        Laporan
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.laporan.muatbongkar.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Muat Bongkar
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.laporan.keuntungan.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Keuntungan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.laporan.gajisupir.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Gaji Supir</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>

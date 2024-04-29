@@ -341,6 +341,14 @@
             "autoWidth": false,
             "responsive": true,
         });
+        $('example3').DataTable({
+            responsive: false,
+            lengthChange: true,
+            autoWidth: true,
+            sScrollx: "100%",
+            sScrollXInner: "110%",
+            bScrollCollapse: true,
+        });
         $('.select2').select2();
         $('.select2bs4').select2({
             theme: 'bootstrap4'

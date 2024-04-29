@@ -56,4 +56,29 @@ class MuatBongkar extends Model
 
     }
 
+    public function hargabeli()
+    {
+        $total = 0;
+        foreach ($this->muatdetail as $item) {
+            $total += ($item->netto * $item->kontrakbeli->harga) + ($item->netto * $item->kontrakbeli->harga * $item->kontrakbeli->ppnpercentage / 100);
+        }
+        return $total;
+    }
+    public function hargajual()
+    {
+        $total = 0;
+        foreach ($this->bongkardetail as $item) {
+            $total += ($item->netto * $item->kontrakjual->harga) + ($item->netto * $item->kontrakjual->harga * $item->kontrakjual->ppnpercentage / 100);
+        }
+        return $total;
+    }
+
+    public function labakotor()
+    {
+        return $this->hargajual() - $this->hargabeli();
+    }
+    public function lababersih()
+    {
+        return $this->labakotor() - $this->totaldibayar();
+    }
 }
