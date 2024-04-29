@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
+        Route::get('/history/{id}', 'history')->name('history');
         Route::delete('/delete/{id}', 'destroy')->name('delete');
     });
 
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/show/{id}', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
+        Route::get('/history/{id}', 'history')->name('history');
         Route::delete('/delete/{id}', 'destroy')->name('delete');
     });
 
@@ -103,6 +105,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::put('/update/{id}', 'update')->name('update');
         Route::delete('/delete/{id}', 'destroy')->name('delete');
+         // Route untuk mendapatkan sisa stok
+         Route::get('/sisastokkontrakbeli/{id}','sisastokkontrakbeli')->name('sisastokkontrakbeli');
     });
 
     Route::controller(PaymentKontrakBeliController::class)->middleware('auth')->prefix('admin/transaksi/payment/kontrakbeli')->name('admin.transaksi.payment.kontrakbeli.')->group(function () {

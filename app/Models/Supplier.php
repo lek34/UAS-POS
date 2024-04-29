@@ -16,6 +16,6 @@ class Supplier extends Model
 
     public function kontrakbeli(): HasMany
     {
-        return $this->hasMany(KontrakBeli::class);
+        return $this->hasMany(KontrakBeli::class,'supplier_id', 'id');
     }
 }

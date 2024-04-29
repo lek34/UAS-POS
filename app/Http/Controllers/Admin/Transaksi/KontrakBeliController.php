@@ -103,5 +103,7 @@ class KontrakBeliController extends Controller
         $kontrakbeli = KontrakBeli::findOrFail($id);
         return view('admin.transaksi.kontrakbeli.history', compact('kontrakbeli'));
     }
+
+
 }
 

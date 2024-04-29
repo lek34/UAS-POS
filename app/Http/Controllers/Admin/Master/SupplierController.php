@@ -87,4 +87,12 @@ class SupplierController extends Controller
         toastr()->success('Data Supplier Telah Dihapus.');
         return redirect()->route('admin.master.supplier.index');
     }
+
+    public function history(string $id)
+    {
+        // Mengambil customer bersama semua kontrak jual yang terkait
+        $supplier = Supplier::with('kontrakbeli')->findOrFail($id);
+
+        return view('admin.master.supplier.history', compact('supplier'));
+    }
 }

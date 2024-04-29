@@ -136,4 +136,15 @@ class MuatBongkarController extends Controller
         toastr()->success('Data Muat Bongkar Telah Dihapus.');
         return redirect()->route('admin.transaksi.muatbongkar.index');
     }
+
+    public function sisastokkontrakbeli($id){
+        $kontrak = KontrakBeli::with('muatdetail')->find($id);
+        if (!$kontrak) {
+            return response()->json(['error' => 'Kontrak tidak ditemukan'], 404);
+        }
+
+        $sisaStok = $kontrak->sisastok();  // Memanggil metode sisastok dari model
+
+        return response()->json(['sisastok' => $sisaStok]);
+    }
 }

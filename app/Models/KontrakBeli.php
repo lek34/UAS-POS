@@ -64,4 +64,6 @@ class KontrakBeli extends Model
         }
         return $this->kg - $total;
     }
+
+    
 }

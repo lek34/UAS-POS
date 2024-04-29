@@ -37,6 +37,7 @@ class KontrakJual extends Model
     {
         return $this->hasMany(BongkarDetail::class, 'kontrak_jual_id', 'id');
     }
+
     public function sisastok()
     {
         $total = 0;
@@ -45,4 +46,6 @@ class KontrakJual extends Model
         }
         return $this->kg - $total;
     }
+
+    
 }
