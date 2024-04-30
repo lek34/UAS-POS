@@ -26,9 +26,9 @@ class CreateSupplierRequest extends FormRequest
             //gi
             'nama' => 'required|unique:suppliers,nama|max:100',
             'alias' => 'required|max:100',
-            'alamat' => 'nullable|max:255',
-            'email' => 'nullable|max:100',
-            'notelp' => 'nullable|max:15',
+            'alamat' => 'required|max:255',
+            'email' => 'required|max:100',
+            'notelp' => 'required|max:15',
         ];
     }
 }
