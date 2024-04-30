@@ -123,7 +123,7 @@
                         <div class="d-flex">
                             <p class="d-flex flex-column">
                                 <span
-                                    class="text-bold text-lg">{{ number_format(
+                                    class="text-bold text-lg">Rp.{{ number_format(
                                         $bongkardetails->sum(function ($item) {
                                             return $item->muatbongkar->labakotor();
                                         }),
@@ -135,7 +135,7 @@
                             </p>
                             <p class="ml-auto d-flex flex-column text-right">
                                 <span
-                                    class="text-bold text-lg">{{ number_format(
+                                    class="text-bold text-lg">Rp.{{ number_format(
                                         $bongkardetails->sum(function ($item) {
                                             return $item->muatbongkar->lababersih();
                                         }),
