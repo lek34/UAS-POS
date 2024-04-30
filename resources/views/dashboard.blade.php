@@ -165,7 +165,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="info-box mb-3 bg-success">
+                <div class="info-box mb-3 bg-orange">
                     <span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
                     <div class="info-box-content">
@@ -175,7 +175,7 @@
                     </div>
                     <!-- /.info-box-content -->
                 </div>
-                <div class="info-box mb-3 bg-danger">
+                <div class="info-box mb-3 bg-warning">
                     <span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
                     <div class="info-box-content">
@@ -186,7 +186,7 @@
                     <!-- /.info-box-content -->
                 </div>
                 <!-- Info Boxes Style 2 -->
-                <div class="info-box mb-3 bg-warning">
+                <div class="info-box mb-3 bg-teal">
                     <span class="info-box-icon"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
@@ -204,15 +204,15 @@
                     <!-- /.info-box-content -->
                 </div>
                 <!-- /.info-box -->
-                <div class="info-box mb-3 bg-success">
-                    <span class="info-box-icon"><i class="fas fa-car" aria-hidden="true"></i></span>
+                <div class="info-box mb-3 bg-olive">
+                    <span class="info-box-icon"><i class="fas fa-shopping-cart"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Biaya Ongkos</span>
+                        <span class="info-box-text">Laba Bersih</span>
                         <span class="info-box-number">Rp.
                             {{ number_format(
                                 $bongkardetails->sum(function ($item) {
-                                    return $item->muatbongkar->totaldibayar();
+                                    return $item->muatbongkar->lababersih();
                                 }),
                                 0,
                                 ',',
@@ -222,15 +222,15 @@
                     <!-- /.info-box-content -->
                 </div>
                 <!-- /.info-box -->
-                <div class="info-box mb-3 bg-danger">
-                    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                <div class="info-box mb-3 bg-navy">
+                    <span class="info-box-icon"><i class="fas fa-car" aria-hidden="true"></i></span>
 
                     <div class="info-box-content">
-                        <span class="info-box-text">Laba Bersih</span>
+                        <span class="info-box-text">Biaya Ongkos</span>
                         <span class="info-box-number">Rp.
                             {{ number_format(
                                 $bongkardetails->sum(function ($item) {
-                                    return $item->muatbongkar->lababersih();
+                                    return $item->muatbongkar->totaldibayar();
                                 }),
                                 0,
                                 ',',
