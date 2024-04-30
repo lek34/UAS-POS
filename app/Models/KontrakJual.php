@@ -24,6 +24,10 @@ class KontrakJual extends Model
     {
         return $this->kg * $this->harga;
     }
+    public function hargappn()
+    {
+        return $this->harga + ($this->harga * $this->ppnpercentage / 100);
+    }
     public function ppn()
     {
         return $this->subtotal() * ($this->ppnpercentage / 100);
@@ -47,5 +51,5 @@ class KontrakJual extends Model
         return $this->kg - $total;
     }
 
-    
+
 }
