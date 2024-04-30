@@ -33,17 +33,76 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->muatbongkar->no }}</td>
                                         <td>{{ $item->muatbongkar->armada->plat }}</td>
-                                        <td>{{ $item->muatbongkar->muat }}</td>
-                                        <td>{{ $item->muatbongkar->bongkar }}</td>
-                                        <td>{{ $item->muatbongkar->susut }}</td>
-                                        <td>{{ $item->muatbongkar->hargabeli() }}</td>
-                                        <td>{{ $item->muatbongkar->hargajual() }}</td>
-                                        <td>{{ $item->muatbongkar->labakotor() }}</td>
-                                        <td>{{ $item->muatbongkar->totaldibayar() }}</td>
-                                        <td>{{ $item->muatbongkar->lababersih() }}</td>
+                                        <td>{{ number_format($item->muatbongkar->muat, 0, ',', '.') }} Kg</td>
+                                        <td>{{ number_format($item->muatbongkar->bongkar, 0, ',', '.') }} Kg</td>
+                                        <td>{{ number_format($item->muatbongkar->susut, 0, ',', '.') }} Kg</td>
+                                        <td>Rp. {{ number_format($item->muatbongkar->hargabeli(), 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($item->muatbongkar->hargajual(), 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($item->muatbongkar->labakotor(), 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($item->muatbongkar->totaldibayar(), 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($item->muatbongkar->lababersih(), 0, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-bold">Total</td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.muat'), 0, ',', '.') }} Kg</td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.bongkar'), 0, ',', '.') }} Kg
+                                    </td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.susut'), 0, ',', '.') }} Kg</td>
+                                    <td>Rp.
+                                        {{ number_format(
+                                            $bongkardetails->sum(function ($item) {
+                                                return $item->muatbongkar->hargabeli();
+                                            }),
+                                            0,
+                                            ',',
+                                            '.',
+                                        ) }}
+                                    </td>
+                                    <td>Rp.
+                                        {{ number_format(
+                                            $bongkardetails->sum(function ($item) {
+                                                return $item->muatbongkar->hargajual();
+                                            }),
+                                            0,
+                                            ',',
+                                            '.',
+                                        ) }}
+                                    </td>
+                                    <td>Rp.
+                                        {{ number_format(
+                                            $bongkardetails->sum(function ($item) {
+                                                return $item->muatbongkar->labakotor();
+                                            }),
+                                            0,
+                                            ',',
+                                            '.',
+                                        ) }}
+                                    </td>
+                                    <td>Rp.
+                                        {{ number_format(
+                                            $bongkardetails->sum(function ($item) {
+                                                return $item->muatbongkar->totaldibayar();
+                                            }),
+                                            0,
+                                            ',',
+                                            '.',
+                                        ) }}
+                                    </td>
+                                    <td>Rp.
+                                        {{ number_format(
+                                            $bongkardetails->sum(function ($item) {
+                                                return $item->muatbongkar->lababersih();
+                                            }),
+                                            0,
+                                            ',',
+                                            '.',
+                                        ) }}
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->
