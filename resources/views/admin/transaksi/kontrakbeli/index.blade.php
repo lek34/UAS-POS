@@ -23,7 +23,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example4" class="table table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -36,7 +36,7 @@
                                     <th>PPN</th>
                                     <th>Total</th>
                                     <th>Sisa Stock</th>
-                                    <th style="width: 20%">Action</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>

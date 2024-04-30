@@ -349,6 +349,20 @@
             sScrollXInner: "110%",
             bScrollCollapse: true,
         });
+        $(document).ready(function() {
+            var table = $('#example4').DataTable({
+                responsive: false,
+                lengthChange: true,
+                autoWidth: true,
+                sScrollX: "100%",
+                sScrollXInner: "110%",
+                pageLength: 15,
+                bScrollCollapse: true,
+                buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example4_wrapper .col-md-6:eq(0)');
+            $('div.dataTables_filter input').focus();
+        });
+
         $('.select2').select2();
         $('.select2bs4').select2({
             theme: 'bootstrap4'
