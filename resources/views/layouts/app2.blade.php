@@ -352,10 +352,10 @@
         $(document).ready(function() {
             var table = $('#example4').DataTable({
                 responsive: false,
-                lengthChange: true,
+                lengthChange: false,
                 autoWidth: true,
                 sScrollX: "100%",
-                sScrollXInner: "110%",
+                sScrollXInner: "200%",
                 pageLength: 15,
                 bScrollCollapse: true,
                 buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"]
