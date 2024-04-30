@@ -46,14 +46,21 @@
                                             @endforeach
                                         </td>
                                         <td>{{ $item->kontrakjual->customer->nama }}</td>
-                                        <td>{{ $item->muatbongkar->muat }}</td>
-                                        <td>{{ $item->muatbongkar->bongkar }}</td>
-                                        <td>{{ $item->muatbongkar->susut }}</td>
-                                        {{-- <td class="text-bold">{{ number_format($kontrakjual->kg - $total, 0, ',', '.') }} Kg
-                                        </td> --}}
+                                        <td>{{ number_format($item->muatbongkar->muat, 0, ',', '.') }} Kg</td>
+                                        <td>{{ number_format($item->muatbongkar->bongkar, 0, ',', '.') }} Kg</td>
+                                        <td>{{ number_format($item->muatbongkar->susut, 0, ',', '.') }} Kg</td>
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="text-bold">Total</td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.muat'), 0, ',', '.') }} Kg</td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.bongkar'), 0, ',', '.') }} Kg
+                                    </td>
+                                    <td>{{ number_format($bongkardetails->sum('muatbongkar.susut'), 0, ',', '.') }} Kg</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->
