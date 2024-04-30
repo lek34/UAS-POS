@@ -201,7 +201,7 @@
                                     <div class="form-group">
                                         <label for="nettobongkar">Netto:</label>
                                         <input type="number" name="nettobongkar" id="nettobongkar" class="form-control"
-                                            placeholder="Masukkan Netto">
+                                            placeholder="Masukkan Netto" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
@@ -698,7 +698,6 @@
             var sisakontrakbeliRaw = document.getElementById("sisakontrakbeli").value; // Mengambil sisa kontrak beli
             var nettomuatRaw = document.getElementById("nettomuat").value; // Dapatkan nilai sebagai string
             var nettomuatValue = parseFloat(nettomuatRaw.replace(/\./g, '')); // Hapus titik dan konversi ke float
-
             var sisaKontrakBeliValue = parseFloat(sisakontrakbeliRaw.replace(/\./g, ''));
 
             // Memeriksa apakah netto lebih besar dari sisa kontrak beli
@@ -747,7 +746,6 @@
                 // Clear input fields after adding a row
                 $("#kontrak_beli_id").val(null).trigger("change");
                 tanggal_muat.value = "";
-                sisaKontrakBeli.value = "";
                 brutomuat.value = "";
                 tarramuat.value = "";
                 nettomuat.value = "";
