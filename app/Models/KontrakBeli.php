@@ -19,7 +19,7 @@ class KontrakBeli extends Model
 
     public function supplier(): BelongsTo
     {
-        return $this->belongsTo(supplier::class);
+        return $this->belongsTo(Supplier::class,'supplier_id','id');
     }
 
     public function subtotal()
