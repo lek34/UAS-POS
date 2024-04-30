@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\BongkarDetail;
+use Carbon\Carbon;
+use App\Models\Supplier;
+use App\Models\Customers;
 use App\Models\KontrakBeli;
 use App\Models\KontrakJual;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\BongkarDetail;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -16,9 +18,9 @@ class DashboardController extends Controller
     public function index()
     {
         $kontrakbeli = KontrakBeli::count();
-        $kontrakjual = KontrakBeli::count();
-        $customer = KontrakBeli::count();
-        $supplier = KontrakBeli::count();
+        $kontrakjual = KontrakJual::count();
+        $customer = Customers::count();
+        $supplier = Supplier::count();
         $bongkardetails = BongkarDetail::whereMonth('tanggal', Carbon::now()->month)->whereYear('tanggal', Carbon::now()->year)->get();
         $bongkardetaillast = BongkarDetail::latest()->take(10)->get();
         $kblast = KontrakBeli::latest()->first();
