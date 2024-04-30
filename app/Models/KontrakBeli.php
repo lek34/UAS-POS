@@ -30,6 +30,10 @@ class KontrakBeli extends Model
     {
         return $this->subtotal() * ($this->ppnpercentage / 100);
     }
+    public function hargappn()
+    {
+        return $this->harga + ($this->harga * $this->ppnpercentage / 100);
+    }
 
     public function total()
     {
@@ -65,5 +69,5 @@ class KontrakBeli extends Model
         return $this->kg - $total;
     }
 
-    
+
 }
